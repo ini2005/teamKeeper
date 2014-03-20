@@ -8,12 +8,12 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.att.team.keeper.R;
 import com.att.team.keeper.fragments.PickRoomFragment;
@@ -47,31 +47,6 @@ public class JoinRoomActivity extends Activity implements ActionBar.TabListener,
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.joinGroup_viewPager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
-        
-//        actionBar.newTab().setText(mSectionsPagerAdapter.getPageTitle(0)).setTabListener(this);
-//        actionBar.newTab().setText(mSectionsPagerAdapter.getPageTitle(1)).setTabListener(this);
-
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
 	}
 	
 	@Override
@@ -91,13 +66,11 @@ public class JoinRoomActivity extends Activity implements ActionBar.TabListener,
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -109,6 +82,9 @@ public class JoinRoomActivity extends Activity implements ActionBar.TabListener,
 				append(phoneNumber).append(", First name: ").append(firstName).append(", Last name: ").append(lastName).
 				toString();
 		Log.d(TAG, log);
+		
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

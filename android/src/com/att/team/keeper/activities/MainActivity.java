@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.att.team.keeper.BluetoothBroadcastReceiver.IBluetoothBroadcastReceiverListener;
@@ -33,6 +36,18 @@ public class MainActivity extends Activity implements
 		mLoggerTextView = (TextView) findViewById(R.id.out);
 		
 		super.onCreate(savedInstanceState);
+		
+		((Button)findViewById(R.id.main_joinRoomButton)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//Intent intent = new Intent(MainActivity.this, JoinRoomActivity.class);
+				Intent intent = InformMemberLostActivity.createIntentForActivity(MainActivity.this, "Yossi", 1);
+				//Intent intent = InformMemberLostActivity.createIntentForActivity(MainActivity.this, "Yossi, Doron", 2);
+				startActivity(intent);
+			}
+		});
+
 	}
 
 	@Override

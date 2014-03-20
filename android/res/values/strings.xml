@@ -12,5 +12,7 @@
     <string name="join">Join</string>
     <string name="stop_alert">Stop Alert</string>
     <string name="left_group">You have left your group</string>
+    <string name="has_left_group">has left the group</string>
+    <string name="have_left_group">have left the group</string>
 
 </resources>
