@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.att.team.dtos.CirclesDto;
 import com.att.team.dtos.ConnectionsDto;
 import com.att.team.dtos.MemberDto;
+import com.att.team.dtos.MembersDto;
 import com.att.team.dtos.RequestDto;
 import com.att.team.dtos.ResponseDto;
 
@@ -83,8 +84,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/v1/webapp/members", method = RequestMethod.GET)
 	@ResponseBody
-	public ConnectionsDto getMembers() {
+	public MembersDto getMembers() {
 
-		return mTeamService.getConnectionsDto();
+		return mTeamService.getMembers();
 	}
 }
