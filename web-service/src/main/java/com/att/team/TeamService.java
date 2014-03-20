@@ -11,6 +11,11 @@ import org.jgrapht.graph.AsUndirectedGraph;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.springframework.stereotype.Service;
 
+import com.att.team.dtos.CircleChildDto;
+import com.att.team.dtos.CirclesDto;
+import com.att.team.dtos.ConnectionLinkDto;
+import com.att.team.dtos.ConnectionMemberDto;
+import com.att.team.dtos.ConnectionsDto;
 import com.att.team.dtos.DeviceRangeDto;
 import com.att.team.dtos.MemberDto;
 import com.att.team.dtos.RequestDto;
@@ -49,6 +54,107 @@ public class TeamService {
 		
 		return responseDto;
 		
+	}
+	
+	
+	public CirclesDto getCirclesDto(){
+		
+		List<Set<MemberDto>> subgroups = getSubgroups();
+		
+		CirclesDto circlesDto = new CirclesDto();
+		circlesDto.setGroupName("all");
+		
+		List<CircleChildDto> children = new ArrayList<CircleChildDto>();
+		circlesDto.setChildren(children);
+		
+		int index = 0;
+		for (Set<MemberDto> subGroup : subgroups) {
+			
+			CircleChildDto newGroup = new CircleChildDto();
+			newGroup.setName("Group-" + index++);
+			
+			List<CircleChildDto> newGroupMembers = new ArrayList<CircleChildDto>();
+			newGroup.setChildren(newGroupMembers);
+			
+			for (MemberDto memberDto : subGroup) {
+				
+				CircleChildDto curMember = new CircleChildDto();
+				curMember.setName(memberDto.getFirstName() + " " + memberDto.getLastName());
+				curMember.setSize(1000);
+				newGroupMembers.add(curMember);
+			}
+			
+			children.add(newGroup);
+		}
+		
+		return circlesDto;
+	}
+	
+	
+	
+	public ConnectionsDto getConnectionsDto(){
+		
+		String[] indexes = new String[mMembers.size()];
+		
+		
+		
+		ConnectionsDto connectionsDto = new ConnectionsDto();
+		
+		List<ConnectionMemberDto> connectionMemberDtos = new ArrayList<ConnectionMemberDto>();
+		List<ConnectionLinkDto> connectionLinkDtos = new ArrayList<ConnectionLinkDto>();
+		
+		connectionsDto.setNodes(connectionMemberDtos);
+		connectionsDto.setLinks(connectionLinkDtos);
+		
+		List<Set<MemberDto>> subgroups = getSubgroups();
+		
+		int membersIndex = 0;
+		int groupIndex = 0;
+		for (Set<MemberDto> group : subgroups) {
+			groupIndex++;
+			
+			for (MemberDto memberDto : group) {
+				
+				indexes[membersIndex++] = memberDto.getBluetoothMac();
+				ConnectionMemberDto curMemberDto = new ConnectionMemberDto();
+				curMemberDto.setGroup(groupIndex);
+				curMemberDto.setName(memberDto.getFirstName() + " " + memberDto.getLastName());
+				connectionMemberDtos.add(curMemberDto);
+			}
+		}
+		
+
+		//generate links
+		for(int i = 0; i < indexes.length - 1; i++){
+			
+			for(int j = 1; j < indexes.length; j++){
+				
+				String edgeNameDir1 = indexes[i] + "##" + indexes[j];
+				String edgeNameDir2 = indexes[j] + "##" + indexes[i];
+				
+				if(mRoomGraph.containsEdge(edgeNameDir1)){
+					
+					ConnectionLinkDto connectionLinkDto = new ConnectionLinkDto();
+					connectionLinkDto.setSource(i);
+					connectionLinkDto.setTarget(j);
+					connectionLinkDto.setValue(i + j);
+					
+					connectionLinkDtos.add(connectionLinkDto);
+				
+				}else if(mRoomGraph.containsEdge(edgeNameDir2)){
+					
+					ConnectionLinkDto connectionLinkDto = new ConnectionLinkDto();
+					connectionLinkDto.setSource(j);
+					connectionLinkDto.setTarget(i);
+					connectionLinkDto.setValue(i + j);
+					
+					connectionLinkDtos.add(connectionLinkDto);
+				
+				}
+			}
+		}
+		
+		return connectionsDto;
 	}
 	
 	
