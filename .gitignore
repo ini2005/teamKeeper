@@ -258,3 +258,5 @@
 .metadata/.plugins/org.springframework.ide.eclipse.osgi.targetdefinition/3.4.0.201310051539-RELEASE/target/org.springframework.osgi.extensions.annotation-1.2.1.jar
 .metadata/.plugins/org.springframework.ide.eclipse.osgi.targetdefinition/3.4.0.201310051539-RELEASE/target/org.springframework.osgi.io-1.2.1.jar
 .metadata/version.ini
+.metadata/
+android/bin/
