@@ -33,7 +33,7 @@ public class TeamService {
 	
 	Map<String, Long> mLonelyMembersDurationsMap = new HashMap<String, Long>();
 	
-	public ResponseDto memberDataReceived(RequestDto requestDto){
+	public synchronized ResponseDto memberDataReceived(RequestDto requestDto){
 		
 		MemberDto memberDto = requestDto.getMemberDto();		
 		memberDto.setLastUpdateTime(System.currentTimeMillis());
@@ -55,7 +55,7 @@ public class TeamService {
 	}
 	
 	
-	public CirclesDto getCirclesDto(){
+	public synchronized CirclesDto getCirclesDto(){
 		
 		List<Set<MemberDto>> subgroups = getSubgroups();
 		
@@ -90,7 +90,7 @@ public class TeamService {
 	
 	
 	
-	public ConnectionsDto getConnectionsDto(String mac){
+	public synchronized ConnectionsDto getConnectionsDto(String mac){
 		
 		String[] indexes = new String[mRoomGraph.vertexSet().size()];
 		
@@ -164,7 +164,7 @@ public class TeamService {
 		return connectionsDto;
 	}
 	
-	public MembersDto getMembers(){
+	public synchronized MembersDto getMembers(){
 		
 		MembersDto membersDto = new MembersDto();
 		membersDto.setMembers(new ArrayList<MemberDto>(mRoomGraph.vertexSet()));
@@ -173,7 +173,7 @@ public class TeamService {
 	}
 	
 	
-	private void updateMemberInGraph(MemberDto memberDto, List<DeviceRangeDto> devicesInRange){
+	private synchronized void updateMemberInGraph(MemberDto memberDto, List<DeviceRangeDto> devicesInRange){
 		
 		if(mRoomGraph.containsVertex(memberDto)){
 			
@@ -243,7 +243,7 @@ public class TeamService {
 		}
 	}
 	
-	public List<Set<MemberDto>> getSubgroups(){
+	public synchronized List<Set<MemberDto>> getSubgroups(){
 		
 		AsUndirectedGraph<MemberDto, String> undirectedGraph = new AsUndirectedGraph<MemberDto, String>(mRoomGraph);
 		
@@ -254,7 +254,7 @@ public class TeamService {
 	}
 	
 	
-	private void updateLastSeenByMap(List<Set<MemberDto>> groups){
+	private synchronized void updateLastSeenByMap(List<Set<MemberDto>> groups){
 		
 		for (Set<MemberDto> group : groups) {
 			
@@ -274,7 +274,9 @@ public class TeamService {
 				
 				MemberDto memberDto = group.iterator().next();
 				
-				Long lonelySince = mLonelyMembersDurationsMap.get(memberDto.getBluetoothMac());
+				Long lonelySinceLong = mLonelyMembersDurationsMap.get(memberDto.getBluetoothMac());
+				
+				long lonelySince = lonelySinceLong != null ? lonelySinceLong.longValue() : 0;
 				
 				long now = System.currentTimeMillis();
 				

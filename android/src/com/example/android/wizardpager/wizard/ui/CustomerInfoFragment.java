@@ -38,7 +38,7 @@ public class CustomerInfoFragment extends Fragment {
     private String mKey;
     private CustomerInfoPage mPage;
     private TextView mNameView;
-    private TextView mEmailView;
+    private TextView mLastNameView;
     private TextView mPhoneView;
 
     public static CustomerInfoFragment create(String key) {
@@ -71,8 +71,8 @@ public class CustomerInfoFragment extends Fragment {
         mNameView = ((TextView) rootView.findViewById(R.id.your_name));
         mNameView.setText(mPage.getData().getString(CustomerInfoPage.NAME_DATA_KEY));
 
-        mEmailView = ((TextView) rootView.findViewById(R.id.your_email));
-        mEmailView.setText(mPage.getData().getString(CustomerInfoPage.EMAIL_DATA_KEY));
+        mLastNameView = ((TextView) rootView.findViewById(R.id.your_last_name));
+        mLastNameView.setText(mPage.getData().getString(CustomerInfoPage.LAST_NAME_DATA_KEY));
         
         mPhoneView = ((TextView) rootView.findViewById(R.id.your_mobile));
         mPhoneView.setText(mPage.getData().getString(CustomerInfoPage.PHONE_DATA_KEY));
@@ -119,7 +119,7 @@ public class CustomerInfoFragment extends Fragment {
             }
         });
 
-        mEmailView.addTextChangedListener(new TextWatcher() {
+        mLastNameView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1,
                     int i2) {
@@ -131,7 +131,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(CustomerInfoPage.EMAIL_DATA_KEY,
+                mPage.getData().putString(CustomerInfoPage.LAST_NAME_DATA_KEY,
                         (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/splash"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <ProgressBar

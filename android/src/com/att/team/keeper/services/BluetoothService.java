@@ -7,7 +7,9 @@ import java.util.Map;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.att.team.keeper.BluetoothBroadcastReceiver;
@@ -19,6 +21,7 @@ import com.att.team.keeper.dtos.ResponseDto;
 import com.att.team.keeper.requests.BaseRequest.IRequestResult;
 import com.att.team.keeper.requests.DeviceInRangeReqeust;
 import com.att.team.keeper.requests.NetworkThread;
+import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
 
 public enum BluetoothService implements IRequestResult<ResponseDto>,
 		IBluetoothBroadcastReceiverListener {
@@ -151,10 +154,13 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 		memberDto.setBluetoothMac(getBluetoothMacAddress());
 		memberDto.setBluetoothName(getLocalBluetoothName());
 
-		memberDto.setFirstName("yossi");
-		memberDto.setLastName("gruner");
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
+		
+		
+		memberDto.setFirstName(sharedPreferences.getString(CustomerInfoPage.NAME_DATA_KEY, null));
+		memberDto.setLastName(sharedPreferences.getString(CustomerInfoPage.LAST_NAME_DATA_KEY, null));
 		memberDto.setLastUpdateTime(System.currentTimeMillis());
-		memberDto.setMobileNumber("+972523551288");
+		memberDto.setMobileNumber(sharedPreferences.getString(CustomerInfoPage.PHONE_DATA_KEY, null));
 
 		requestDto.setMemberDto(memberDto);
 

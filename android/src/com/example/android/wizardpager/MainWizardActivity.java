@@ -21,7 +21,10 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -113,7 +116,14 @@ public class MainWizardActivity extends FragmentActivity implements
 					
 					
 					Intent intent = new Intent(MainWizardActivity.this.getApplicationContext(), MainActivity.class);
-					intent.putExtras(page.getData());
+					
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					
+					Editor editor = sharedPreferences.edit();
+					editor.putString(CustomerInfoPage.NAME_DATA_KEY, page.getData().getString(CustomerInfoPage.NAME_DATA_KEY));
+					editor.putString(CustomerInfoPage.LAST_NAME_DATA_KEY, page.getData().getString(CustomerInfoPage.LAST_NAME_DATA_KEY));
+					editor.putString(CustomerInfoPage.PHONE_DATA_KEY, page.getData().getString(CustomerInfoPage.PHONE_DATA_KEY));
+					editor.commit();
 					
 					startActivity(intent);
 					

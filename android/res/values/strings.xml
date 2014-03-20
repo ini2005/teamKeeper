@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-
     <string name="app_name">TeamKeeper</string>
     <string name="pick_room">Pick a Room</string>
     <string name="enter_details">Enter Details</string>
@@ -16,20 +16,15 @@
     <string name="left_group">You have left your group</string>
     <string name="has_left_group">has left the group</string>
     <string name="have_left_group">have left the group</string>
-    
     <string name="next">Next</string>
     <string name="prev">Previous</string>
     <string name="finish">Join Room</string>
     <string name="review">Review</string>
-
     <string name="label_your_name">Name</string>
-    <string name="label_your_email">Email</string>
+    <string name="label_your_last_name">Last Name</string>
     <string name="hint_your_name">e.g. Larry</string>
-    <string name="hint_your_email">Optional</string>
-
+    <string name="hint_your_last_name">Optional</string>
     <string name="submit_confirm_message">Place the order with the deli? You will receive an email
         confirmation.</string>
     <string name="submit_confirm_button">Place order</string>
-    
-
 </resources>
