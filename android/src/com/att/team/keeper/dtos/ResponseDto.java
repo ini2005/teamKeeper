@@ -1,6 +1,7 @@
 package com.att.team.keeper.dtos;
 
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +11,7 @@ public class ResponseDto {
 	private List<MemberDto> mMembers;
 
 	@JsonProperty("groups")
-	private List<List<MemberDto>> mGroups;
+	private List<Set<MemberDto>> mGroups;
 
 	
 	
@@ -22,11 +23,11 @@ public class ResponseDto {
 		mMembers = members;
 	}
 
-	public List<List<MemberDto>> getGroups() {
+	public List<Set<MemberDto>> getGroups() {
 		return mGroups;
 	}
 
-	public void setGroups(List<List<MemberDto>> groups) {
+	public void setGroups(List<Set<MemberDto>> groups) {
 		mGroups = groups;
 	}
 
