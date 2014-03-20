@@ -26,7 +26,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.att.team.keeper.activities.JoinRoomActivity">
+            android:name="com.example.android.wizardpager.MainWizardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
