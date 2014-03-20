@@ -77,7 +77,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/v1/webapp/connections", method = RequestMethod.GET)
 	@ResponseBody
-	public ConnectionsDto getConnections(@RequestParam("mac") String mac) {
+	public ConnectionsDto getConnections(@RequestParam(required=false, value="mac") String mac) {
 
 		return mTeamService.getConnectionsDto(mac);
 	}
