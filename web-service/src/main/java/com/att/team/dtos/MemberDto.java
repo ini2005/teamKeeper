@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MemberDto {
 
+	
+
 	@JsonProperty("firstName")
 	private String mFirstName;
 
@@ -82,4 +84,29 @@ public class MemberDto {
 		mPanic = panic;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((mBluetoothMac == null) ? 0 : mBluetoothMac.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberDto other = (MemberDto) obj;
+		if (mBluetoothMac == null) {
+			if (other.mBluetoothMac != null)
+				return false;
+		} else if (!mBluetoothMac.equals(other.mBluetoothMac))
+			return false;
+		return true;
+	}
 }
