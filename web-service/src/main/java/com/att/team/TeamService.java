@@ -2,6 +2,8 @@ package com.att.team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,39 +20,35 @@ import com.att.team.dtos.ConnectionMemberDto;
 import com.att.team.dtos.ConnectionsDto;
 import com.att.team.dtos.DeviceRangeDto;
 import com.att.team.dtos.MemberDto;
+import com.att.team.dtos.MembersDto;
 import com.att.team.dtos.RequestDto;
 import com.att.team.dtos.ResponseDto;
 
 @Service
 public class TeamService {
 
+	private static final long MAX_TIME_ALONE_BEFORE_PANIC_MILLIS = 10000;
+	
 	SimpleDirectedGraph<MemberDto, String> mRoomGraph = new SimpleDirectedGraph<MemberDto, String>(String.class);
 	
-	Map<String, MemberDto> mMembers = new HashMap<String, MemberDto>();
+	Map<String, Long> mLonelyMembersDurationsMap = new HashMap<String, Long>();
 	
 	public ResponseDto memberDataReceived(RequestDto requestDto){
 		
 		MemberDto memberDto = requestDto.getMemberDto();		
 		memberDto.setLastUpdateTime(System.currentTimeMillis());
 		
-		if(mMembers.containsKey(memberDto.getBluetoothMac())){
-			
-			mMembers.get(memberDto.getBluetoothMac()).setLastUpdateTime(System.currentTimeMillis());
-		
-		}else{
-			
-			
-			mMembers.put(memberDto.getBluetoothMac(), memberDto);
-		}
-
 		List<DeviceRangeDto> devicesInRange = requestDto.getDevicesInRange();
 		
 		updateMemberInGraph(memberDto, devicesInRange);
 		
 		ResponseDto responseDto = new ResponseDto();
 		
-		responseDto.setMembers(new ArrayList<MemberDto>(mMembers.values()));
-		responseDto.setGroups(getSubgroups());
+		responseDto.setMembers(new ArrayList<MemberDto>(mRoomGraph.vertexSet()));
+		List<Set<MemberDto>> subgroups = getSubgroups();
+		responseDto.setGroups(subgroups);
+		
+		updateLastSeenByMap(subgroups);
 		
 		return responseDto;
 		
@@ -94,7 +92,7 @@ public class TeamService {
 	
 	public ConnectionsDto getConnectionsDto(){
 		
-		String[] indexes = new String[mMembers.size()];
+		String[] indexes = new String[mRoomGraph.vertexSet().size()];
 		
 		
 		
@@ -157,6 +155,14 @@ public class TeamService {
 		return connectionsDto;
 	}
 	
+	public MembersDto getMembers(){
+		
+		MembersDto membersDto = new MembersDto();
+		membersDto.setMembers(new ArrayList<MemberDto>(mRoomGraph.vertexSet()));
+		
+		return membersDto;
+	}
+	
 	
 	private void updateMemberInGraph(MemberDto memberDto, List<DeviceRangeDto> devicesInRange){
 		
@@ -181,6 +187,20 @@ public class TeamService {
 		}else{
 			
 			mRoomGraph.addVertex(memberDto);
+		}
+		
+		Iterator<MemberDto> iterator = mRoomGraph.vertexSet().iterator();
+		
+		while (iterator.hasNext()) {
+			
+			MemberDto dto = iterator.next();
+			
+			if(dto.equals(memberDto)){
+				
+				dto.setLastUpdateTime(System.currentTimeMillis());
+				break;
+			}
+			
 		}
 		
 		//add new edges from the member
@@ -222,5 +242,50 @@ public class TeamService {
 		
 		return connectivityInspector.connectedSets();
 		
+	}
+	
+	
+	private void updateLastSeenByMap(List<Set<MemberDto>> groups){
+		
+		for (Set<MemberDto> group : groups) {
+			
+			if(group.size() > 1){
+				
+				for (MemberDto memberDto : group) {
+					
+					Set groupCopy = new HashSet<MemberDto>(group);
+					groupCopy.remove(memberDto);
+					memberDto.setLastSeenBy(new ArrayList<MemberDto>(groupCopy));
+					memberDto.setPanic(null);
+					
+					mLonelyMembersDurationsMap.remove(memberDto.getBluetoothMac());
+				}
+			
+			}else{
+				
+				MemberDto memberDto = group.iterator().next();
+				
+				Long lonelySince = mLonelyMembersDurationsMap.get(memberDto.getBluetoothMac());
+				
+				long now = System.currentTimeMillis();
+				
+				if(lonelySince > 0){
+					
+					if((now - lonelySince) > MAX_TIME_ALONE_BEFORE_PANIC_MILLIS){
+						
+						memberDto.setPanic("PANIC!!!");
+					
+					}else{
+						
+						memberDto.setPanic(null);
+					}
+				}else{
+					
+					mLonelyMembersDurationsMap.put(memberDto.getBluetoothMac(), now);
+					memberDto.setPanic(null);
+				}
+			}
+			
+		}
 	}
 }

@@ -79,4 +79,12 @@ public class HomeController {
 
 		return mTeamService.getConnectionsDto();
 	}
+	
+	
+	@RequestMapping(value = "/v1/webapp/members", method = RequestMethod.GET)
+	@ResponseBody
+	public ConnectionsDto getMembers() {
+
+		return mTeamService.getConnectionsDto();
+	}
 }

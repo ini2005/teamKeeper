@@ -5,19 +5,22 @@ import com.att.team.keeper.R;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ListView;
 
 public class PickRoomFragment extends Fragment {
 
 	private IPickRoomFragment mListener;
 	
-	private static final String TAG = PickRoomFragment.class.getSimpleName();
+	private static final String[] ROOMS = new String[]{"First grade - teacher Hana", "Second grade = teacher Tamar",
+		"Jerusalem trip", "Searching places in Tel Aviv"};
+	
+	//private static final String TAG = PickRoomFragment.class.getSimpleName();
 
 	public interface IPickRoomFragment {
 		void onRoomPicked();
@@ -34,6 +37,9 @@ public class PickRoomFragment extends Fragment {
 				mListener.onRoomPicked();
 			}
 		});
+		
+		ListView roomsList = (ListView)view.findViewById(R.id.pickRoom_roomsList);
+		roomsList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, ROOMS));
 		return view;
 	}
 
@@ -44,13 +50,14 @@ public class PickRoomFragment extends Fragment {
 	}
 	
 	public int getRoomNumber() {
-		String roomNumber = ((EditText)getView().findViewById(R.id.pickRoom_roomNumber)).getText().toString();
-		try {
-			return Integer.parseInt(roomNumber);
-		} catch (NumberFormatException e) {
-			Log.e(TAG, "Failed to parse room number, returning 0 instead");
-			return 0;
-		}
+//		String roomNumber = ((EditText)getView().findViewById(R.id.pickRoom_roomNumber)).getText().toString();
+//		try {
+//			return Integer.parseInt(roomNumber);
+//		} catch (NumberFormatException e) {
+//			Log.e(TAG, "Failed to parse room number, returning 0 instead");
+//			return 0;
+//		}
+		return 1;
 	}
 
 }

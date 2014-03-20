@@ -32,8 +32,9 @@ public class SandwichWizardModel extends AbstractWizardModel {
 
     @Override
     protected PageList onNewRootPageList() {
-        return new PageList(new BranchPage(this, "Order type").addBranch("Sandwich",
-        		new SingleFixedChoicePage(this, "Bread")
+        return new PageList(
+        		new BranchPage(this, "Order type").addBranch("Sandwich",
+        						new SingleFixedChoicePage(this, "Bread")
                                         .setChoices("White", "Wheat", "Rye", "Pretzel", "Ciabatta")
                                         .setRequired(true),
 

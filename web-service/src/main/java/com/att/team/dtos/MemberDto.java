@@ -1,5 +1,7 @@
 package com.att.team.dtos;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MemberDto {
@@ -21,9 +23,20 @@ public class MemberDto {
 
 	@JsonProperty("lastUpdateTime")
 	private long mLastUpdateTime;
+	
+	@JsonProperty("imageUrl")
+	private long mImageUrl;
 
 	@JsonProperty("panic")
 	private String mPanic;
+
+	@JsonProperty("lastSeenBy")
+	private List<MemberDto> mLastSeenBy;
+	
+	
+	
+	
+
 
 	public String getFirstName() {
 		return mFirstName;
@@ -73,12 +86,28 @@ public class MemberDto {
 		mLastUpdateTime = lastUpdateTime;
 	}
 
+	public long getImageUrl() {
+		return mImageUrl;
+	}
+
+	public void setImageUrl(long imageUrl) {
+		mImageUrl = imageUrl;
+	}
+
 	public String getPanic() {
 		return mPanic;
 	}
 
 	public void setPanic(String panic) {
 		mPanic = panic;
+	}
+
+	public List<MemberDto> getLastSeenBy() {
+		return mLastSeenBy;
+	}
+
+	public void setLastSeenBy(List<MemberDto> lastSeenBy) {
+		mLastSeenBy = lastSeenBy;
 	}
 
 	@Override
