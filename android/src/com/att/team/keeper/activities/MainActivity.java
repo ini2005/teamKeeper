@@ -90,6 +90,8 @@ public class MainActivity extends Activity implements
 			startActivity(discoverableIntent);
 
 			return true;
+		} else if(id == R.id.action_clear_log) {
+			mLoggerTextView.setText("");
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -103,9 +105,9 @@ public class MainActivity extends Activity implements
 		
 		for (BluetoothDevice bluetoothDevice : devices.keySet()) {
 			mLoggerTextView.append("\nDeviceName: " );
-			mLoggerTextView.append( bluetoothDevice.getName());
+			mLoggerTextView.append( bluetoothDevice.getName() == null ? " " : bluetoothDevice.getName());
 			mLoggerTextView.append("\nDeviceMac: " );
-			mLoggerTextView.append( bluetoothDevice.getAddress());
+			mLoggerTextView.append( bluetoothDevice.getAddress() == null ? " " : bluetoothDevice.getAddress());
 			mLoggerTextView.append(" Device RSSI: " );
 			mLoggerTextView.append( devices.get(bluetoothDevice).toString());
 		}
