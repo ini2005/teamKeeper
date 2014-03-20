@@ -1,0 +1,798 @@
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: #eeeeee;
+	font-family: verdana;
+	height: 100%;
+	overflow-y: scroll;	
+}
+
+.main_width {
+	width: 898px;
+}
+
+.ams_header {
+	display: inline-table;
+	background-image: -webkit-linear-gradient(bottom, #067ab4, #0497e0);
+	background-image: -moz-linear-gradient(bottom, #067ab4, #0497e0);
+	background-image: -o-linear-gradient(bottom, #067ab4, #0497e0);
+	background-image: linear-gradient(to top, #067ab4, #0497e0);
+	height: 99px;
+	min-width: 100%; 
+}
+
+.ams_header img {
+	margin-left: 27px;
+}
+
+.main_content {
+	height: auto !important;
+	height: 100%;
+	position: relative;
+	padding-bottom: 25px;
+	background-color: #ffffff;
+	border: solid 1px #ccc;
+	background-image: -webkit-linear-gradient(bottom, rgba(239, 239, 239, .5),
+		rgba(255, 255, 255, .5) 11%);
+	background-image: -moz-linear-gradient(bottom, rgba(239, 239, 239, .5),
+		rgba(255, 255, 255, .5) 11%);
+	background-image: -o-linear-gradient(bottom, rgba(239, 239, 239, .5),
+		rgba(255, 255, 255, .5) 11%);
+	background-image: linear-gradient(to top, rgba(239, 239, 239, .5),
+		rgba(255, 255, 255, .5) 11%);
+	
+}
+
+.seperator_line {
+	height: 1px;
+	width: 851px;
+	margin-bottom: 50px;
+}
+
+.seperator_line_vertical {
+	border-left: solid #f3f3f3;
+}
+
+.seperator_line_horizontal {
+	border-bottom: solid #f3f3f3;
+}
+
+/********************** Start the search field **********************************************/
+.rounded_rect {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.search_device_rounded_rect_small {
+	height: 30px;
+	width: 260px;
+	margin-top: 35px;
+	margin-right: 21px;
+	border: solid 2px white;
+	background-color: transparent;
+}
+
+.search_device_rounded_rect_big {
+	width: 329px;
+	height: 43px;
+	margin-top: 24px;
+	border: solid 2px #ff7200;
+	background-color: #fff;
+}
+
+.search_device_rounded_rect_big_with_shadow {
+	-webkit-box-shadow: inset 0 1px 7px rgba(255, 114, 0, .54);
+	-moz-box-shadow: inset 0 1px 7px rgba(255, 114, 0, .54);
+	box-shadow: inset 0 1px 7px rgba(255, 114, 0, .54);
+}
+
+.remove_effects  {
+	outline: none;
+	display: block;
+	background: none;
+	border: none;
+
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.search_device_clear_btn {
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.search_device_btn_small {
+	margin: 3px;
+	margin-right: 6px;
+}
+
+.enlarge_icon {
+	content: url("../img/enlarge icon.png");
+}
+
+.enlarge_icon_small {
+	content: url("../img/enlarge icon small.png");
+}
+
+.clear_icon {
+	content: url("../img/close btn.png");
+	width: 20px;
+}
+
+.clear_icon:hover {
+	content: url("../img/close btn_hover.png");
+}
+
+.search_icon {
+	background: url("../img/sprite_search_button.png") 0px 0px;
+	height:59px;
+	width: 59px;
+	margin-top: 17px;
+	margin-left: 19px;
+	cursor: pointer;
+}
+
+.search_icon:hover {
+	background-position: 0px 59px;
+}
+
+.search_icon:active {
+	background-position: 0px 119px ;
+}
+
+#search_device_image_id {
+	margin-top: 12px;
+	margin-left: 126px;
+	margin-bottom: 10px;
+	content: url("../img/DeviceImage.png");
+}
+
+#search_device_text_area_id {
+	width: 450px;
+	margin-top: 85px;
+	margin-left: 40px;
+}
+
+#search_device #search_device_text_area_id h2 {
+	margin-top: 0px;
+	margin-bottom: 3px;
+}
+
+#search_device #search_device_text_area_id h3 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.search_device_input_field {
+	border: none;
+	background-color: transparent;	
+}
+
+.search_device_input_field:focus {
+	outline: none;
+}
+
+.search_device_input_field_big{
+	height: 43px;
+	width: 295px;
+	padding-left: 18px;
+}
+
+.search_device_input_field_small {
+	width: 200px;
+	padding-left: 10px;
+	padding-top: 3px;
+}
+
+.search_device_input_field_small::-webkit-input-placeholder {
+	color: white;
+}
+
+.search_device_input_field_big::-webkit-input-placeholder {
+	color: #ff7200;
+	font-style: italic;
+}
+
+#search_device_seperator_id {
+	margin-right: 24px;
+	margin-bottom: 138px;
+}
+
+/********************** End search field **********************************************/
+#device_search_result_sum {
+	margin-left: 32px;
+	margin-bottom: 13px;
+}
+
+/********************** Start search result **********************************************/
+.device {
+	width: 851px;
+	height: 134px;
+	background-color: #f3f3f3;
+	margin: 2px 0px 2px 7px;
+}
+
+.device div img {
+	width: 38px;
+	height: 73px;
+	margin-left: 25px;
+	margin-top: 25px;
+	float: left;
+}
+
+.device .device_details {
+	width: 745px;
+	margin-left: 21px;
+	float: left;	
+}
+
+.device .device_details h3 {
+	margin-top: 27px;
+	margin-bottom: 0px;
+	text-transform: capitalize;
+}
+
+.device .device_details .device_details_info {
+	margin-top: 9px;
+}
+
+.device .device_details .device_details_info .registration_date {
+	margin-top: 9px;
+}
+
+.device .device_details .device_details_info .device_details_cases {
+	margin-top: 15px;
+}
+
+.device .device_details .device_details_info .device_info_name_space {
+	margin-right: 5px;
+}
+
+.device .device_details .device_details_info .device_info_value_space {
+	margin-right: 10px;
+}
+
+#select_device_button {
+	color: white;
+	width: 127px;
+	height: 27px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: transparent;
+	float: right;
+	background-image: -webkit-lineargradient(bottom, #067ab4, #0895dc);
+	background-image: -moz-lineargradient(bottom, #067ab4, #0895dc);
+	background-image: -o-linear-gradient(bottom, #067ab4, #0895dc);
+	background-image: linear-gradient(to top, #067ab4, #0895dc);
+}
+
+.device .device_details div #select_device_button:hover {
+	background-image: -webkit-linear-gradient(top, #0a92d6, #20b0f8);
+	background-image: -moz-linear-gradient(top, #0a92d6, #20b0f8);
+	background-image: -o-linear-gradient(top, #0a92d6, #20b0f8);
+	background-image: linear-gradient(to bottom, #0a92d6, #20b0f8);
+}
+
+.device .device_details div #select_device_button:active {
+	background-image: -webkit-linear-gradient(top, #067ab4, #0895dc);
+	background-image: -moz-linear-gradient(top, #067ab4, #0895dc);
+	background-image: -o-linear-gradient(top, #067ab4, #0895dc);
+	background-image: linear-gradient(to bottom, #067ab4, #0895dc);
+}
+
+.device .device_details div #select_device_button:focus {
+	outline: none;
+}
+
+/********************** End search result **********************************************/
+
+/********************** Start device details **********************************************/
+.device_info_title_margin {
+	margin-right: 7px;
+}
+
+.device_info_value_margin {
+	margin-right: 15px;
+}
+
+.device_info_technical_margin {
+	margin-top: 9px;
+}
+
+#device_details {
+	margin-left: 37px;
+	margin-top: 31px;	
+}
+
+.back_to_search_results {
+	float: right;
+	margin-right: 27px;
+}
+
+#device_details_name {
+	margin-top: 14px;
+	clear: both;
+	text-transform: capitalize;
+}
+
+#device_info_superficial {
+	margin-top: 8px;
+}
+
+.device_info_registration_date {
+	margin-top: 4px;	
+}
+
+.device_info_technical_collapse_margin {
+	margin-top: 33px;
+}
+
+#start_session_button {
+	float: right;
+	margin-top: 42px;
+	margin-right: 42px;
+	color: white;
+	width: 127px;
+	height: 27px;
+	border: transparent;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #000;
+	background-image: -webkit-lineargradient(bottom, #067ab4, #0895dc);
+	background-image: -moz-lineargradient(bottom, #067ab4, #0895dc);
+	background-image: -o-linear-gradient(bottom, #067ab4, #0895dc);
+	background-image: linear-gradient(to top, #067ab4, #0895dc);
+}
+
+#start_session_button:hover:enabled {
+	background-image: -webkit-linear-gradient(top, #0a92d6, #20b0f8);
+	background-image: -moz-linear-gradient(top, #0a92d6, #20b0f8);
+	background-image: -o-linear-gradient(top, #0a92d6, #20b0f8);
+	background-image: linear-gradient(to bottom, #0a92d6, #20b0f8);
+}
+
+#start_session_button:active:enabled {
+	background-image: -webkit-linear-gradient(top, #067ab4, #0895dc);
+	background-image: -moz-linear-gradient(top, #067ab4, #0895dc);
+	background-image: -o-linear-gradient(top, #067ab4, #0895dc);
+	background-image: linear-gradient(to bottom, #067ab4, #0895dc);
+}
+
+#start_session_button:disabled {
+	background-image: -webkit-linear-gradient(top, gray, gray);
+	background-image: -moz-linear-gradient(top, gray, gray);
+	background-image: -o-linear-gradient(top, gray, gray);
+	background-image: linear-gradient(to bottom, gray, gray);
+}
+
+#progress_bar {
+	float: left;
+	width: 787px;
+	margin-top: 25px;
+}
+
+/********************** End device details **********************************************/
+
+
+/********************** Start Device Session **********************************************/
+
+.sessionContainer {
+    width: 898px;    
+    margin-top: 18px;
+    margin-left: 15px;
+}
+
+.tabsContainer {
+	float: left;
+	width: 416px;
+    height: 594px;
+    margin-right: 5px;
+}
+
+.tab-content{
+    width: 416px;
+    height: 554px;
+	border-left: solid 1px #c7c7c7;
+    border-right: solid 1px #c7c7c7;
+    border-bottom: solid 1px #c7c7c7;
+}
+
+.deviceScreenContainer {
+	float: left;
+	width: 416px;
+    height: 594px;
+	border: solid 1px #c7c7c7;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+}
+
+.nav-tabs>li>a, .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
+	border: solid 1px #c7c7c7;
+    font-size: 13px;
+    font-family: Verdana;
+    color: #333333;
+    cursor: pointer;
+    -webkit-user-select: none;  
+} 
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+	font-size: 13px;
+    font-family: Verdana;
+    color: #067ab4;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.systemLogFilterBy {
+    font-size: 14px;
+    font-family: Verdana;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.systemLogView .selectpicker {
+    width: 160px;
+    height: 25px;
+    display: -webkit-box;
+    padding-left: 5px;
+    margin-left: 20px;
+    margin-bottom: 10px; 
+    font-size: 12px;
+    font-family: Verdana;
+    color: #333333;     
+}
+
+.systemLogLevelFilter {
+    float: left;
+}
+
+.systemLogSearch {
+    float: left;
+    margin-left: 20px;
+}
+
+.systemLogSearch input {
+    width: 196px;
+    height: 25px;
+    float: left;
+    font-size: 12px;
+    font-family: Verdana;
+    color: #333333;
+}
+
+.systemLogSearch .searchButton{
+  width: 34px;
+  height: 34px;  
+  margin-left: 10px;
+  background: url('../img/system_log_search_btn.png') no-repeat;
+  border: none;
+}
+
+.systemLogSearch .searchButton:hover {
+  background: url('../img/system_log_search_btn_hover.png') no-repeat;
+}
+
+.systemLogSearch .searchButton:active {
+  background: url('../img/system_log_search_btn_pressed.png') no-repeat;
+}
+
+.systemLogSearch .searchButton:focus {
+  outline:none;
+}
+
+.systemLogTextArea {
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 380px;
+    height: 380px;
+    border: solid 1px #333333;
+    overflow-x:hidden; 
+    overflow-y:scroll;
+    font-size: 12px;
+    font-family: Verdana;
+    color: #333333;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.systemLogButtons{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    color: #333333;     
+}
+
+.exportButton{
+	float:left;
+	width: 33%;
+}
+
+.exportButton a {
+    vertical-align: middle;
+}
+
+.exportButton img {
+    cursor: pointer;
+}
+
+.changeScrollStateButton{
+	float:left;
+	padding-left: 5px;
+	width: 33%;
+}
+
+.changeScrollStateButton a {
+    vertical-align: middle;
+}
+
+.changeScrollStateButton img {
+    cursor: pointer;
+}
+
+.lockScrollingButtonImage{
+	content: url("../img/lock_icon.png");
+}
+
+.unlockScrollingButtonImage{
+	content: url("../img/unlock_icon.png");
+}
+
+.deleteButton {
+	float:left;
+	padding-left: 30px;
+	width: 33%;
+}
+
+.deleteButton a {
+    vertical-align: middle;
+}
+
+.deleteButton img {
+    cursor: pointer;
+}
+
+/********************** End Device Session **********************************************/
+.arrow_icon{
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+	display: inline;
+
+}
+.arrow_icon_expend {
+	background: url("../img/collaps_all.png") 0px -24px;
+	
+}
+.arrow_icon_expend:hover {
+	background-position: 0px -36px;
+}
+
+.arrow_icon_collapse {
+	background: url("../img/collaps_all.png") 0px 0px;
+}
+.arrow_icon_collapse:hover {
+	background-position: 0px -12px;
+}
+
+/********************** Start Device Info Session **********************************************/
+
+.device_info_title_text {
+	color:#666666;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.device_info_text {
+	color:#333333;
+	font-size:12px;
+	font-weight:normal;
+}
+
+.device_info_title {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.device_info_expanded {
+	padding-left: 15px;
+	height: auto;
+}
+
+.device_info_fix {
+	height: 35px;
+	padding-left: 12px;
+}
+
+
+#device_info{
+  
+  margin-right: 15px;
+}
+#device_info_network_text{
+	padding-left: 15px;
+}
+
+#device_info_container{
+ height: 520px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+#device_info_app_uninstall{
+	font: verdana  12 #067ab4;
+	text-decoration: underline;
+	padding-left: 45px;
+}
+
+#device_info_battery{
+	padding-top: 10px;
+}
+
+#storageFree{
+  padding-left: 10px;
+}
+#device_info_ariplain_img{
+	margin-left: 10px;
+	-webkit-user-select: none;
+}
+
+#device_info_app{
+	background-color: #b9b9b9; 
+	width: 368px;
+	height: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+}
+#device_info_app_info{
+	margin-top: 8px;
+	padding-top: 10px;
+}
+.device_info_appImg {
+	margin-left: 20px;
+	margin-right: 10px;
+	margin-top: 5px;
+	-webkit-user-select: none;
+}
+
+.device_appliction_info_image {
+	width:43px;
+	height:43px;
+	-webkit-user-select: none;
+}
+
+
+/********************** Start Device Info Session **********************************************/
+
+.scrollbar{
+  overflow-y:scroll;
+  overflow-x :hidden ;
+}
+
+
+/********************** During Device Session **********************************************/
+#during_session_device_screen {
+/* 	width: 242px;
+	height: 431px; */
+	min-width: 280px;
+	min-height: 430px;
+	margin-left: 68px;
+	margin-top: 80px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #292929;
+	border: solid 2px #343434;
+	-webkit-user-select: none;
+}
+
+#during_session_device_screen img {
+	width: 237px;
+	height: 387px;
+	position: relative;
+	margin: 20px;
+	-webkit-user-select: none;
+}
+
+#during_session_device_buttons_panel {
+	margin-top: 220px;
+	margin-right: 10px;
+}
+
+.during_session_panel_button {
+	margin-top: 5px;
+	height: 34px;
+	width: 34px;
+}
+
+/* .menu_button {
+	content: url("../img/menu_icon_idle.png");
+	cursor: pointer;
+}
+
+.menu_button:hover {
+	content: url("../img/menu_icon_hover.png");
+}
+
+.menu_button:active {
+	content: url("../img/menu_icon_pressed.png");
+} */
+
+.menu_button {
+	background: url("../img/slices_device_buttons.png") 0px 0px;
+	cursor: pointer;
+}
+
+.menu_button:hover:enabled {
+	background-position: 0px -34px;
+}
+
+.menu_button:active:enabled {
+	background-position: 0px -68px;
+}
+
+.back_button {
+	background: url("../img/slices_device_buttons.png") 0px -102px;
+	cursor: pointer;
+}
+
+.back_button:hover:enabled {
+	background-position: 0px -136px;
+}
+
+.back_button:active:enabled {
+	background-position: 0px -170px;
+}
+
+.volume_down_button {
+	background: url("../img/slices_device_buttons.png") 0px -204px;
+	cursor: pointer;
+}
+
+.volume_down_button:hover:enabled {
+	background-position: 0px -238px;
+}
+
+.volume_down_button:active:enabled {
+	background-position: 0px -272px;
+}
+
+.volume_up_button {
+	background: url("../img/slices_device_buttons.png") 0px -306px;
+	cursor: pointer;
+}
+
+.volume_up_button:hover:enabled {
+	background-position: 0px -340px;
+}
+
+.volume_up_button:active:enabled {
+	background-position: 0px -374px;
+}
+
+/********************** End During Device Session **********************************************/
+
+
+
+

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-ng-app="keeper">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ams Remote Device Control</title>
+
+<link rel="stylesheet" href="css/rest.css" />
+<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/app.css" />
+<link rel="stylesheet" href="css/general.css" />
+
+</head>
+<body>
+	
+	<header class="ams_header">
+		<section class="container main_width">
+			<a href=""><img src="img/logo.png" alt="AMS logo"/></a>
+			<span data-ui-view="search-header-view"></span>
+		</section>
+		
+	</header>
+	<section class="container main_width main_content">
+		<div data-ui-view="main-view"></div>		
+	</section>
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+	<script src="lib/angular/angular-route.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/angulerUi/ui-bootstrap-tpls-0.10.0.min.js"></script>
+	<script src="lib/bootbox/bootbox.min.js"></script>
+
+	<!-- View Models -->
+	<script src="js/viewModel/mainViewModel.js"></script>
+	
+	<!-- Services -->
+	<script src="js/service/mainService.js"></script>
+	
+	<script src="js/dtos.js"></script>
+	<script src="js/app.js"></script>
+  	<script src="js/general.js"></script>
+
+</body>
+</html>

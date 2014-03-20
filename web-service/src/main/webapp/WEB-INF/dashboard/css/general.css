@@ -1,0 +1,144 @@
+@font-face {
+	font-family: ClvATT-Book;
+	src: url('../fonts/ClvATT-Book.otf'), url('../fonts/ClvATT-Book.eot');
+}
+
+@font-face {
+	font-family: ClvATT-Light;
+	src: url('../fonts/ClvATT-Light.otf'), url('../fonts/ClvATT-Light.eot');
+}
+
+@font-face {
+	font-family: OmnesATT-Light;
+	src: url('../fonts/OmnesATT-Light.otf'), url('../fonts/OmnesATT-Light.eot');
+}
+
+@font-face {
+	font-family: OmnesATT-Medium;
+	src: url('../fonts/OmnesATT-Medium.otf'), url('../fonts/OmnesATT-Medium.eot');
+}
+
+@font-face {
+	font-family: OmnesATT-Regular;
+	src: url('../fonts/OmnesATT-Regular.otf'), url('../fonts/OmnesATT-Regular.eot');
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration:underline;
+}
+
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
+}
+
+.clear_both{
+	clear: both;
+}
+
+.omnes_med {
+	font-family: OmnesATT-Medium;
+}
+
+.verdana_reg {
+	font-family: verdana;
+}
+
+.omnes_reg {
+	font-family: OmnesATT-Regular;
+}
+
+.font_size_11 {
+	font-size: 11px;
+}
+
+.font_size_12 {
+	font-size: 12px;
+}
+
+.font_size_13 {
+	font-size: 13px;
+}
+
+.font_size_14 {
+	font-size: 14px;
+}
+
+.font_size_15 {
+	font-size: 15px;
+}
+
+.font_size_18 {
+	font-size: 18px;
+}
+
+.font_size_20 {
+	font-size: 20px;
+}
+
+.font_size_24 {
+	font-size: 24px;
+}
+
+.white {
+	color: #ffffff;
+}
+
+.black{
+	color: #000000;
+}
+
+.gray{
+	color: #999999;
+}
+
+.gray_dark{
+	color: #333333; 
+}
+
+.orange{
+	color: #ff7200;
+}
+
+.turkiz {
+	color: #067ab4;
+}
+
+.purple {
+	color: #b30a3c;
+}
+
+.green{
+	color: #6ebb1f;
+}
+
+.inactive {
+	opacity: 0.4;	
+}
+
+.cursorDefault {
+	cursor: default;
+}
+
+.cursorPointer {
+	cursor: pointer;
+}
+
+.unselectable {
+    /* For Opera and <= IE9, we need to add unselectable="on" attribute onto each element */
+    /* Check this site for more details: http://help.dottoro.com/lhwdpnva.php */
+    -moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
+    -webkit-user-select: none;
+    -ms-user-select: none; /* From IE10 only */
+    user-select: none; /* Not valid CSS yet, as of July 2012 */
+
+    -webkit-user-drag: none; /* Prevents dragging of images/divs etc */
+    user-drag: none;
+}
