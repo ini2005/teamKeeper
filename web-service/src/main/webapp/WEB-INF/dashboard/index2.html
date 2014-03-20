@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-ng-app="keeper">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ams Remote Device Control</title>
+
+<link rel="stylesheet" href="css/rest.css" />
+<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/app.css" />
+<link rel="stylesheet" href="css/general.css" />
+
+</head>
+<body>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+	<script src="lib/angular/angular-route.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/angulerUi/ui-bootstrap-tpls-0.10.0.min.js"></script>
+	<script src="lib/bootbox/bootbox.min.js"></script>
+	<script>
+	function graph(data){
+		function name(d) { return d.name; }
+		function group(d) { return d.group; }
+		
+		var color = d3.scale.category10();
+		function colorByGroup(d) { return color(group(d)); }
+		
+		var width = 800,
+		    height = 800;
+		
+		var svg = d3.select('#graph_Better_force_layout_selection')
+		    .append('svg')
+		    .attr('width', width)
+		    .attr('height', height);
+		
+		var node, link;
+		
+		var voronoi = d3.geom.voronoi()
+		    .x(function(d) { return d.x; })
+		    .y(function(d) { return d.y; })
+		    .clipExtent([[-10, -10], [width+10, height+10]]);
+		
+		function recenterVoronoi(nodes) {
+		    var shapes = [];
+		    voronoi(nodes).forEach(function(d) {
+		        if ( !d.length ) return;
+		        var n = [];
+		        d.forEach(function(c){
+		            n.push([ c[0] - d.point.x, c[1] - d.point.y ]);
+		        });
+		        n.point = d.point;
+		        shapes.push(n);
+		    });
+		    return shapes;
+		}
+		
+		var force = d3.layout.force()
+		    .charge(-2000)
+		    .friction(0.3)
+		    .linkDistance(50)
+		    .size([width, height]);
+		
+		force.on('tick', function() {
+		    node.attr('transform', function(d) { return 'translate('+d.x+','+d.y+')'; })
+		        .attr('clip-path', function(d) { return 'url(#clip-'+d.index+')'; });
+		
+		    link.attr('x1', function(d) { return d.source.x; })
+		        .attr('y1', function(d) { return d.source.y; })
+		        .attr('x2', function(d) { return d.target.x; })
+		        .attr('y2', function(d) { return d.target.y; });
+		
+		    var clip = svg.selectAll('.clip')
+		        .data( recenterVoronoi(node.data()), function(d) { return d.point.index; } );
+		
+		    clip.enter().append('clipPath')
+		        .attr('id', function(d) { return 'clip-'+d.point.index; })
+		        .attr('class', 'clip');
+		    clip.exit().remove()
+		
+		    clip.selectAll('path').remove();
+		    clip.append('path')
+		        .attr('d', function(d) { return 'M'+d.join(',')+'Z'; });
+		});
+		
+		//d3.json('graph_better_force_layout_selection.json', function(err, data) {
+		
+		    data.nodes.forEach(function(d, i) {
+		        d.id = i;
+		    });
+		
+		    link = svg.selectAll('.link')
+		        .data( data.links )
+		      .enter().append('line')
+		        .attr('class', 'link')
+		        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+		
+		    node = svg.selectAll('.node')
+		        .data( data.nodes )
+		      .enter().append('g')
+		        .attr('title', name)
+		        .attr('class', 'node')
+		        .call( force.drag );
+		
+		    node.append('circle')
+		        .attr('r', 30)
+		        .attr('fill', colorByGroup)
+		        .attr('fill-opacity', 0.5);
+		    
+		    node.append('text')	
+		      .text(function(d) { return d.name; });
+		    
+		    
+		    node.append('circle')
+		        .attr('r', 4)
+		        .attr('stroke', 'black');
+		
+		    force
+		        .nodes( data.nodes )
+		        .links( data.links )
+		        .start();
+		}
+	</script>
+	
+	<!-- Graphs -->
+	<script type="text/javascript" src="js/d3/d3.js"></script>
+    <script type="text/javascript" src="js/d3/d3.layout.js"></script>
+    <script type="text/javascript" src="js/d3/packages.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="css/zoomable_pack_layout.css" />
+    <link rel="stylesheet" href="css/hierarchicale_edge_bundling.css" />
+    <link rel="stylesheet" href="css/better_force_layout_selection.css" />
+    
+	<!-- View Models -->
+	<script src="js/viewModel/mainViewModel.js"></script>
+	
+	<!-- Services -->
+	<script src="js/service/mainService.js"></script>
+	
+	<script src="js/dtos.js"></script>
+	<script src="js/app.js"></script>
+  	<script src="js/general.js"></script>
+  	
+  	<div id="graph">
+  		<script>
+  		$.ajax({
+			type : "GET",
+			url : "http://localhost:8089/team/v1/webapp/connections?mac=ee",
+			contentType: "application/json",
+			async : true,
+			success : function(data, textStatus, request) {
+				console.log(data);
+				if(data.nodes.length > 0){
+					graph(data);
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("login error: " + XMLHttpRequest.status + " Error: "
+						+ errorThrown);
+			}
+		});	
+  		</script>
+  	</div>
+
+</body>
+</html>
