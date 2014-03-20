@@ -19,7 +19,8 @@ import android.view.MenuItem;
 
 import com.att.team.keeper.R;
 import com.att.team.keeper.fragments.DebugFragment;
-import com.att.team.keeper.fragments.WatchUsersFragment;
+import com.att.team.keeper.fragments.WatchListUsersFragment;
+import com.att.team.keeper.fragments.WatchWebUsersFragment;
 import com.att.team.keeper.services.BluetoothService;
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
@@ -138,8 +139,10 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         public Fragment getItem(int position) {
         	switch (position) {
         	case 0:
-        		return new WatchUsersFragment();
+        		return new WatchWebUsersFragment();
         	case 1:
+        		return new WatchListUsersFragment();
+        	case 2:
         		if(mDebugFragment == null) {
         			
         			mDebugFragment = new DebugFragment(); 
@@ -151,8 +154,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
-            return 2;
+            // Show 3 total pages.
+            return 3;
         }
 
         @Override
@@ -160,8 +163,10 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.watch_users).toUpperCase(l);
+                    return getString(R.string.web).toUpperCase(l);
                 case 1:
+                    return getString(R.string.watch_users).toUpperCase(l);
+                case 2:
                     return getString(R.string.debug).toUpperCase(l);
             }
             return null;

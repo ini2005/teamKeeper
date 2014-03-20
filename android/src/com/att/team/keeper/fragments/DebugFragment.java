@@ -69,7 +69,9 @@ public class DebugFragment extends Fragment implements IBluetoothBroadcastReceiv
 
 	@Override
 	public void onDiscoveryStarted() {
-		mLoggerTextView.append("\nDiscovery Started...");
+		if (mLoggerTextView != null) {
+			mLoggerTextView.append("\nDiscovery Started...");
+		}
 		
 	}
 	
