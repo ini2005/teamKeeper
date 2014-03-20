@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.att.team.dtos.CirclesDto;
@@ -76,9 +77,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "/v1/webapp/connections", method = RequestMethod.GET)
 	@ResponseBody
-	public ConnectionsDto getConnections() {
+	public ConnectionsDto getConnections(@RequestParam("mac") String mac) {
 
-		return mTeamService.getConnectionsDto();
+		return mTeamService.getConnectionsDto(mac);
 	}
 	
 	

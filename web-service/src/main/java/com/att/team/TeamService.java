@@ -90,7 +90,7 @@ public class TeamService {
 	
 	
 	
-	public ConnectionsDto getConnectionsDto(){
+	public ConnectionsDto getConnectionsDto(String mac){
 		
 		String[] indexes = new String[mRoomGraph.vertexSet().size()];
 		
@@ -115,7 +115,16 @@ public class TeamService {
 				
 				indexes[membersIndex++] = memberDto.getBluetoothMac();
 				ConnectionMemberDto curMemberDto = new ConnectionMemberDto();
-				curMemberDto.setGroup(groupIndex);
+				
+				if(memberDto.getBluetoothMac().equalsIgnoreCase(mac)){
+					
+					curMemberDto.setGroup(200);
+				
+				}else{
+					
+					curMemberDto.setGroup(groupIndex);
+				}
+				
 				curMemberDto.setName(memberDto.getFirstName() + " " + memberDto.getLastName());
 				connectionMemberDtos.add(curMemberDto);
 			}
