@@ -36,19 +36,19 @@ var mainViewModel = function($scope, $log, $state, $stateParams, mainService) {
 					+ errorThrown);
 		}
 	});	
-	/*
+	
 	$.ajax({
 		type : "GET",
-		url : "http://localhost:8089/team/v1/webapp/connections",
+		url : "http://localhost:8089/team/v1/webapp/members",
 		contentType: "application/json",
 		async : true,
 		success : function(data, textStatus, request) {
 			console.log(data);
-			mainService.graph_Better_force_layout_selection(data);
+			//mainService.graph_Better_force_layout_selection(data);
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			alert("login error: " + XMLHttpRequest.status + " Error: "
 					+ errorThrown);
 		}
-	});	*/
+	});	
 };
