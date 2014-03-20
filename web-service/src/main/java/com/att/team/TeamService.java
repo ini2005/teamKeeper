@@ -11,7 +11,7 @@ import org.jgrapht.graph.AsUndirectedGraph;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.springframework.stereotype.Service;
 
-import com.att.team.dtos.DeviceRange;
+import com.att.team.dtos.DeviceRangeDto;
 import com.att.team.dtos.MemberDto;
 import com.att.team.dtos.RequestDto;
 import com.att.team.dtos.ResponseDto;
@@ -26,11 +26,11 @@ public class TeamService {
 	public ResponseDto memberDataReceived(RequestDto requestDto){
 		
 		MemberDto memberDto = requestDto.getMemberDto();		
-		memberDto.setLastUpdatetime(System.currentTimeMillis());
+		memberDto.setLastUpdateTime(System.currentTimeMillis());
 		
 		if(mMembers.containsKey(memberDto.getBluetoothMac())){
 			
-			mMembers.get(memberDto.getBluetoothMac()).setLastUpdatetime(System.currentTimeMillis());
+			mMembers.get(memberDto.getBluetoothMac()).setLastUpdateTime(System.currentTimeMillis());
 		
 		}else{
 			
@@ -38,7 +38,7 @@ public class TeamService {
 			mMembers.put(memberDto.getBluetoothMac(), memberDto);
 		}
 
-		List<DeviceRange> devicesInRange = requestDto.getDevicesInRange();
+		List<DeviceRangeDto> devicesInRange = requestDto.getDevicesInRange();
 		
 		updateMemberInGraph(memberDto, devicesInRange);
 		
@@ -52,7 +52,7 @@ public class TeamService {
 	}
 	
 	
-	private void updateMemberInGraph(MemberDto memberDto, List<DeviceRange> devicesInRange){
+	private void updateMemberInGraph(MemberDto memberDto, List<DeviceRangeDto> devicesInRange){
 		
 		if(mRoomGraph.containsVertex(memberDto)){
 			
@@ -81,7 +81,7 @@ public class TeamService {
 
 		if(devicesInRange.size() > 0){
 			
-			for (DeviceRange deviceRange : devicesInRange) {
+			for (DeviceRangeDto deviceRange : devicesInRange) {
 				
 				//find the other member
 				MemberDto otherMemberDto = null;

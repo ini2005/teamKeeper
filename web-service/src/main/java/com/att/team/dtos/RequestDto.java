@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestDto {
 
-	@JsonProperty("firstName")
+	@JsonProperty("memberDto")
 	private MemberDto mMemberDto;
 
 	@JsonProperty("devicesInRange")
-	List<DeviceRange> mDevicesInRange;
+	List<DeviceRangeDto> mDevicesInRange;
 
 	public MemberDto getMemberDto() {
 		return mMemberDto;
@@ -20,11 +20,11 @@ public class RequestDto {
 		mMemberDto = memberDto;
 	}
 
-	public List<DeviceRange> getDevicesInRange() {
+	public List<DeviceRangeDto> getDevicesInRange() {
 		return mDevicesInRange;
 	}
 
-	public void setDevicesInRange(List<DeviceRange> devicesInRange) {
+	public void setDevicesInRange(List<DeviceRangeDto> devicesInRange) {
 		mDevicesInRange = devicesInRange;
 	}
 

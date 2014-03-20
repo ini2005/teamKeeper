@@ -2,10 +2,7 @@ package com.att.team.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class MemberDto {
-
-	
 
 	@JsonProperty("firstName")
 	private String mFirstName;
@@ -23,7 +20,7 @@ public class MemberDto {
 	private String mMobileNumber;
 
 	@JsonProperty("lastUpdateTime")
-	private long mLastUpdatetime;
+	private long mLastUpdateTime;
 
 	@JsonProperty("panic")
 	private String mPanic;
@@ -68,12 +65,12 @@ public class MemberDto {
 		mMobileNumber = mobileNumber;
 	}
 
-	public long getLastUpdatetime() {
-		return mLastUpdatetime;
+	public long getLastUpdateTime() {
+		return mLastUpdateTime;
 	}
 
-	public void setLastUpdatetime(long lastUpdatetime) {
-		mLastUpdatetime = lastUpdatetime;
+	public void setLastUpdateTime(long lastUpdateTime) {
+		mLastUpdateTime = lastUpdateTime;
 	}
 
 	public String getPanic() {

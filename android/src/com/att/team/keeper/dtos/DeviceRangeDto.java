@@ -1,21 +1,20 @@
-package com.att.team.dtos;
+package com.att.team.keeper.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-public class DeviceRange {
+public class DeviceRangeDto {
 
 	@JsonProperty("bluetoothRssi")
-	private String mBluetoothRssi;
+	private int mBluetoothRssi;
 
 	@JsonProperty("bluetoothMac")
 	private String mBluetoothMac;
 
-	public String getBluetoothRssi() {
+	public int getBluetoothRssi() {
 		return mBluetoothRssi;
 	}
 
-	public void setBluetoothRssi(String bluetoothRssi) {
+	public void setBluetoothRssi(int bluetoothRssi) {
 		mBluetoothRssi = bluetoothRssi;
 	}
 
