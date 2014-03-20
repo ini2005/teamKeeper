@@ -19,6 +19,7 @@ import com.att.team.dtos.ConnectionLinkDto;
 import com.att.team.dtos.ConnectionMemberDto;
 import com.att.team.dtos.ConnectionsDto;
 import com.att.team.dtos.DeviceRangeDto;
+import com.att.team.dtos.LastSeenByEntry;
 import com.att.team.dtos.MemberDto;
 import com.att.team.dtos.MembersDto;
 import com.att.team.dtos.RequestDto;
@@ -262,9 +263,22 @@ public class TeamService {
 				
 				for (MemberDto memberDto : group) {
 					
-					Set groupCopy = new HashSet<MemberDto>(group);
+					List<LastSeenByEntry> lastSeenByEntries = new ArrayList<LastSeenByEntry>();
+					Set<MemberDto> groupCopy = new HashSet<MemberDto>(group);
 					groupCopy.remove(memberDto);
-					memberDto.setLastSeenBy(new ArrayList<MemberDto>(groupCopy));
+					
+					for (MemberDto groupCopyMember : groupCopy) {
+						
+						LastSeenByEntry lastSeenByEntry = new LastSeenByEntry();
+						lastSeenByEntry.setName(groupCopyMember.getFirstName());
+						lastSeenByEntry.setLastName(groupCopyMember.getLastName());
+						lastSeenByEntry.setPhone(groupCopyMember.getMobileNumber());
+						lastSeenByEntry.setPhotoUrl(groupCopyMember.getImageUrl());
+						
+						lastSeenByEntries.add(lastSeenByEntry);
+					}
+					
+					memberDto.setLastSeenBy(lastSeenByEntries);
 					memberDto.setPanic(null);
 					
 					mLonelyMembersDurationsMap.remove(memberDto.getBluetoothMac());

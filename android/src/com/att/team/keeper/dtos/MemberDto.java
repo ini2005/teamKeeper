@@ -31,7 +31,7 @@ public class MemberDto {
 	private String mPanic;
 
 	@JsonProperty("lastSeenBy")
-	private List<MemberDto> mLastSeenBy;
+	private List<LastSeenByEntry> mLastSeenBy;
 	
 	
 	
@@ -102,11 +102,11 @@ public class MemberDto {
 		mPanic = panic;
 	}
 
-	public List<MemberDto> getLastSeenBy() {
+	public List<LastSeenByEntry> getLastSeenBy() {
 		return mLastSeenBy;
 	}
 
-	public void setLastSeenBy(List<MemberDto> lastSeenBy) {
+	public void setLastSeenBy(List<LastSeenByEntry> lastSeenBy) {
 		mLastSeenBy = lastSeenBy;
 	}
 
