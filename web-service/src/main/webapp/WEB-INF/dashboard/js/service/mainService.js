@@ -4,7 +4,7 @@
 var mainService = function($log, $http) {
 	$log.debug('mainService');
 
-	
+	/*
 	this.graph_zoomable_pack_layout = function(data) {
 		var w = 400,
 		    h = 400,
@@ -227,7 +227,7 @@ var mainService = function($log, $http) {
 		  return a[0] * b[0] + a[1] * b[1];
 		}
 	};
-	
+	*/
 	this.graph_Better_force_layout_selection = function(data){
 	
 		function name(d) { return d.name; }
@@ -331,9 +331,5 @@ var mainService = function($log, $http) {
 		        .start();
 		//});
 	
-	};
-	
-	this.pepole_list = function(data){
-		
 	};
 };
