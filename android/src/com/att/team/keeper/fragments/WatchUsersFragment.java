@@ -28,11 +28,14 @@ public class WatchUsersFragment extends Fragment implements IResponseListener {
 	
 	private ListView mUsersList;
 	
+	private LayoutInflater mInflater;
+	
 	private static final String TAG = WatchUsersFragment.class.getSimpleName();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		mInflater = inflater;
 		View view = inflater.inflate(R.layout.watch_layout, null);
 
 		WebView usersWebView = (WebView) view.findViewById(R.id.watch_usersWeb);
@@ -96,17 +99,19 @@ public class WatchUsersFragment extends Fragment implements IResponseListener {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			ImageView image= (ImageView)convertView.findViewById(R.id.watchItem_image);
-			TextView firstName = (TextView)convertView.findViewById(R.id.watchItem_firstName);
-			TextView lastName = (TextView)convertView.findViewById(R.id.watchItem_lastName);
-			TextView phoneNumber = (TextView)convertView.findViewById(R.id.watchItem_phoneNumber);
+			View view = mInflater.inflate(R.layout.watch_users_list_item, null);
+			ImageView image= (ImageView)view.findViewById(R.id.watchItem_image);
+			TextView firstName = (TextView)view.findViewById(R.id.watchItem_firstName);
+			TextView lastName = (TextView)view.findViewById(R.id.watchItem_lastName);
+			TextView phoneNumber = (TextView)view.findViewById(R.id.watchItem_phoneNumber);
 			
 			MemberDto member = mMembers.get(position);
 			image.setImageURI(Uri.parse(member.getImageUrl()));
 			firstName.setText(member.getFirstName());
 			lastName.setText(member.getLastName());
 			phoneNumber.setText(member.getMobileNumber());
-			return null;
+			
+			return view;
 		}
 		
 	}
