@@ -342,7 +342,12 @@ var mainService = function($log, $http) {
 		        var imageUrl = obj.imageUrl;
 		        console.log("name: " + name);
 		        console.log("imageUrl: " + imageUrl);
-		        members +='<li class="pepole"><img src="' + imageUrl + '" width="40px" height="40px"/>' + name + '</li>';
+		        if(obj.panic == "PANIC!!!"){
+		        	members +='<li class="pepole background_red">';
+		        }else{
+		        	members +='<li class="pepole">';
+		        }
+		        members +='<img src="' + imageUrl + '" width="40px" height="40px"/>' + name + '</li>';
 		    }
 			members +='</ul>';
 			console.log(members);

@@ -822,10 +822,13 @@ body {
 	margin-top:10px; 
 }
 .pepole:hover{
-	color: red;
+	color: blue;
 }
 .pepole img{
 	margin-right:10px; 
+}
+.background_red{
+	background-color:red;
 }
 
 
