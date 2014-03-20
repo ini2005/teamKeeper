@@ -1,5 +1,6 @@
 package com.att.team.keeper.fragments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.att.team.keeper.R;
@@ -8,7 +9,9 @@ import com.att.team.keeper.services.BluetoothService;
 import com.att.team.keeper.services.BluetoothService.IResponseListener;
 
 import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,8 @@ public class WatchUsersFragment extends Fragment implements IResponseListener {
 	private UsersAdapter mAdapter;
 	
 	private ListView mUsersList;
+	
+	private static final String TAG = WatchUsersFragment.class.getSimpleName();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +39,12 @@ public class WatchUsersFragment extends Fragment implements IResponseListener {
 		usersWebView.setWebViewClient(new InlineWebViewClient());
 		usersWebView.loadUrl("http://www.google.com");
 		
-		mAdapter = new UsersAdapter(BluetoothService.INSTANCE.getLatestMembers());
+		List<MemberDto> members = BluetoothService.INSTANCE.getLatestMembers();
+		if (members == null) {
+			members = new ArrayList<MemberDto>();
+			Log.d(TAG, "Received members list with null");
+		}
+		mAdapter = new UsersAdapter(members);
 
 		mUsersList = (ListView) view.findViewById(R.id.watch_userList);
 		mUsersList.setAdapter(mAdapter);
@@ -56,6 +66,8 @@ public class WatchUsersFragment extends Fragment implements IResponseListener {
 	public void onResponse(List<MemberDto> list) {
 		mAdapter = new UsersAdapter(list);
 		mUsersList.setAdapter(mAdapter);
+		
+		Log.d(TAG, "Received members list with size " + list.size());
 	}
 	
 	private class UsersAdapter extends BaseAdapter {
@@ -90,6 +102,10 @@ public class WatchUsersFragment extends Fragment implements IResponseListener {
 			TextView phoneNumber = (TextView)convertView.findViewById(R.id.watchItem_phoneNumber);
 			
 			MemberDto member = mMembers.get(position);
+			image.setImageURI(Uri.parse(member.getImageUrl()));
+			firstName.setText(member.getFirstName());
+			lastName.setText(member.getLastName());
+			phoneNumber.setText(member.getMobileNumber());
 			return null;
 		}
 		
