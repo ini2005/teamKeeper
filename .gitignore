@@ -278,3 +278,5 @@
 .metadata/.plugins/org.eclipse.jdt.ui/jdt-images/9.png
 android/bin/classes/.gitignore
 web-service/src/main/java/com/att/team/TeamService.java.orig
+.metadata/
+android/bin/
