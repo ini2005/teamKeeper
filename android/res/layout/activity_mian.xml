@@ -13,7 +13,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="bluetooth name:"
+            android:text="Bluetooth Name:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:typeface="roboto_thin" />
 
@@ -21,7 +21,6 @@
             android:id="@+id/bluetooth_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:typeface="roboto_thin" />
     </LinearLayout>
@@ -34,7 +33,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="bluetooth mac:"
+            android:text="Bluetooth Mac:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:typeface="roboto_thin" />
 
@@ -42,7 +41,6 @@
             android:id="@+id/bluetooth_mac_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mac"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:typeface="roboto_thin" />
     </LinearLayout>
@@ -62,9 +60,6 @@
             app:typeface="roboto_thin" />
     </ScrollView>
 
-    <Button
-        android:id="@+id/main_joinRoomButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+ 
 
 </LinearLayout>

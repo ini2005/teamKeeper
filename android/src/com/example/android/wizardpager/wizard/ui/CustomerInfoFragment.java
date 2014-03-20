@@ -39,6 +39,7 @@ public class CustomerInfoFragment extends Fragment {
     private CustomerInfoPage mPage;
     private TextView mNameView;
     private TextView mEmailView;
+    private TextView mPhoneView;
 
     public static CustomerInfoFragment create(String key) {
         Bundle args = new Bundle();
@@ -72,6 +73,10 @@ public class CustomerInfoFragment extends Fragment {
 
         mEmailView = ((TextView) rootView.findViewById(R.id.your_email));
         mEmailView.setText(mPage.getData().getString(CustomerInfoPage.EMAIL_DATA_KEY));
+        
+        mPhoneView = ((TextView) rootView.findViewById(R.id.your_mobile));
+        mPhoneView.setText(mPage.getData().getString(CustomerInfoPage.PHONE_DATA_KEY));
+        
         return rootView;
     }
 
@@ -131,6 +136,25 @@ public class CustomerInfoFragment extends Fragment {
                 mPage.notifyDataChanged();
             }
         });
+        
+        mPhoneView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1,
+                    int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                mPage.getData().putString(CustomerInfoPage.PHONE_DATA_KEY,
+                        (editable != null) ? editable.toString() : null);
+                mPage.notifyDataChanged();
+            }
+        });
+        
     }
 
     @Override

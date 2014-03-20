@@ -10,9 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.att.team.keeper.BluetoothBroadcastReceiver.IBluetoothBroadcastReceiverListener;
@@ -25,8 +22,7 @@ public class MainActivity extends Activity implements
 	private TextView mMyBluetoothNameTextView;
 	private TextView mMyBluetoothMacTextView;
 	private TextView mLoggerTextView;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_mian);
@@ -34,29 +30,15 @@ public class MainActivity extends Activity implements
 		mMyBluetoothNameTextView = (TextView) findViewById(R.id.bluetooth_name_textView);
 		mMyBluetoothMacTextView = (TextView) findViewById(R.id.bluetooth_mac_textView);
 		mLoggerTextView = (TextView) findViewById(R.id.out);
-		
-		super.onCreate(savedInstanceState);
-		
-		((Button)findViewById(R.id.main_joinRoomButton)).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//Intent intent = new Intent(MainActivity.this, JoinRoomActivity.class);
-				Intent intent = InformMemberLostActivity.createIntentForActivity(MainActivity.this, "Yossi", 1);
-				//Intent intent = InformMemberLostActivity.createIntentForActivity(MainActivity.this, "Yossi, Doron", 2);
-				startActivity(intent);
-			}
-		});
 
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	protected void onResume() {
 
-		mMyBluetoothNameTextView.setText(BluetoothService.INSTANCE
-				.getLocalBluetoothName());
-		mMyBluetoothMacTextView.setText(BluetoothService.INSTANCE
-				.getBluetoothMacAddress());
+		mMyBluetoothNameTextView.setText(BluetoothService.INSTANCE.getLocalBluetoothName());
+		mMyBluetoothMacTextView.setText(BluetoothService.INSTANCE.getBluetoothMacAddress());
 
 		BluetoothService.INSTANCE.startScanningForDevices(this);
 
@@ -90,7 +72,7 @@ public class MainActivity extends Activity implements
 			startActivity(discoverableIntent);
 
 			return true;
-		} else if(id == R.id.action_clear_log) {
+		} else if (id == R.id.action_clear_log) {
 			mLoggerTextView.setText("");
 		}
 		return super.onOptionsItemSelected(item);
@@ -98,31 +80,32 @@ public class MainActivity extends Activity implements
 
 	@Override
 	public void onDiscoveryFinished(Map<BluetoothDevice, Integer> devices) {
-		
-		 if(devices.keySet().size() == 0) {
-			 return;
-		 }
-		
-		for (BluetoothDevice bluetoothDevice : devices.keySet()) {
-			mLoggerTextView.append("\nDeviceName: " );
-			mLoggerTextView.append( bluetoothDevice.getName() == null ? " " : bluetoothDevice.getName());
-			mLoggerTextView.append("\nDeviceMac: " );
-			mLoggerTextView.append( bluetoothDevice.getAddress() == null ? " " : bluetoothDevice.getAddress());
-			mLoggerTextView.append(" Device RSSI: " );
-			mLoggerTextView.append( devices.get(bluetoothDevice).toString());
+
+		if (devices.keySet().size() == 0) {
+			return;
 		}
-		
+
+		for (BluetoothDevice bluetoothDevice : devices.keySet()) {
+			mLoggerTextView.append("\nDeviceName: ");
+			mLoggerTextView.append(bluetoothDevice.getName() == null ? " "
+					: bluetoothDevice.getName());
+			mLoggerTextView.append("\nDeviceMac: ");
+			mLoggerTextView.append(bluetoothDevice.getAddress() == null ? " "
+					: bluetoothDevice.getAddress());
+			mLoggerTextView.append(" Device RSSI: ");
+			mLoggerTextView.append(devices.get(bluetoothDevice).toString());
+		}
+
 		mLoggerTextView.append("\nDiscovery Finished...");
-		
+
 		mLoggerTextView.append("\n-----------------------------------");
-		
 
 	}
 
 	@Override
 	public void onDiscoveryStarted() {
 		mLoggerTextView.append("\nDiscovery Started...");
-		
+
 	}
 
 }

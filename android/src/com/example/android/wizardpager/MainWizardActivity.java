@@ -20,6 +20,7 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -33,7 +34,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.att.team.keeper.R;
+import com.att.team.keeper.activities.MainActivity;
 import com.example.android.wizardpager.wizard.model.AbstractWizardModel;
+import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
 import com.example.android.wizardpager.wizard.model.ModelCallbacks;
 import com.example.android.wizardpager.wizard.model.Page;
 import com.example.android.wizardpager.wizard.ui.PageFragmentCallbacks;
@@ -105,19 +108,15 @@ public class MainWizardActivity extends FragmentActivity implements
 			@Override
 			public void onClick(View view) {
 				if (mPager.getCurrentItem() == mCurrentPageSequence.size()) {
-					DialogFragment dg = new DialogFragment() {
-						@Override
-						public Dialog onCreateDialog(Bundle savedInstanceState) {
-							return new AlertDialog.Builder(getActivity())
-									.setMessage(R.string.submit_confirm_message)
-									.setPositiveButton(
-											R.string.submit_confirm_button,
-											null)
-									.setNegativeButton(android.R.string.cancel,
-											null).create();
-						}
-					};
-					dg.show(getSupportFragmentManager(), "place_order_dialog");
+					
+					Page page = mWizardModel.findByKey("Your info");
+					
+					
+					Intent intent = new Intent(MainWizardActivity.this.getApplicationContext(), MainActivity.class);
+					intent.putExtras(page.getData());
+					
+					startActivity(intent);
+					
 				} else {
 					if (mEditingAfterReview) {
 						mPager.setCurrentItem(mPagerAdapter.getCount() - 1);

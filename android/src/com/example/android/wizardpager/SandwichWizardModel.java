@@ -32,33 +32,19 @@ public class SandwichWizardModel extends AbstractWizardModel {
 
     @Override
     protected PageList onNewRootPageList() {
-        return new PageList(
-        		new BranchPage(this, "Order type").addBranch("Sandwich",
-        						new SingleFixedChoicePage(this, "Bread")
-                                        .setChoices("White", "Wheat", "Rye", "Pretzel", "Ciabatta")
-                                        .setRequired(true),
+        
+    	
+    	return new PageList(new BranchPage(this, "Create Or Join Room").
+        		addBranch("Join A Room",
+        						new SingleFixedChoicePage(this, "Selected Room")
+                                        .setChoices("School Trip #1", 
+                                        		"School Trip #2",
+                                        		"School Trip #3",
+                                        		"School Trip #4",
+                                        		"School Trip #5")
+                                        .setRequired(true))
 
-                                new MultipleFixedChoicePage(this, "Meats")
-                                        .setChoices("Pepperoni", "Turkey", "Ham", "Pastrami",
-                                                "Roast Beef", "Bologna"),
-
-                                new MultipleFixedChoicePage(this, "Veggies")
-                                        .setChoices("Tomatoes", "Lettuce", "Onions", "Pickles",
-                                                "Cucumbers", "Peppers"),
-
-                                new MultipleFixedChoicePage(this, "Cheeses")
-                                        .setChoices("Swiss", "American", "Pepperjack", "Muenster",
-                                                "Provolone", "White American", "Cheddar", "Bleu"),
-
-                                new BranchPage(this, "Toasted?")
-                                        .addBranch("Yes",
-                                                new SingleFixedChoicePage(this, "Toast time")
-                                                        .setChoices("30 seconds", "1 minute",
-                                                                "2 minutes"))
-                                        .addBranch("No")
-                                        .setValue("No"))
-
-                        .addBranch("Salad",
+                        .addBranch("Create A Room",
                                 new SingleFixedChoicePage(this, "Salad type")
                                         .setChoices("Greek", "Caesar")
                                         .setRequired(true),

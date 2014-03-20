@@ -49,7 +49,22 @@
                 android:layout_height="wrap_content"
                 android:saveEnabled="false"
                 android:inputType="textEmailAddress"
-                android:hint="@string/hint_your_email" />
+                android:hint="@string/hint_your_email"
+                android:layout_marginBottom="16dp" />
+            
+            
+             <TextView style="@style/WizardFormLabel"
+                android:text="PHONE" />
+            
+            <EditText android:id="@+id/your_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:saveEnabled="false"
+                android:inputType="textEmailAddress"
+                android:hint="e.g. +972523551288"
+                android:layout_marginBottom="16dp" />
+            
+            
 
         </LinearLayout>
     </ScrollView>
