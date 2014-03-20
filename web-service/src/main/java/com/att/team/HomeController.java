@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.att.team.dtos.CirclesDto;
+import com.att.team.dtos.ConnectionsDto;
 import com.att.team.dtos.MemberDto;
 import com.att.team.dtos.RequestDto;
 import com.att.team.dtos.ResponseDto;
@@ -24,9 +27,14 @@ import com.att.team.dtos.ResponseDto;
 @Controller
 public class HomeController {
 
+	
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
+	
+	@Autowired
+	TeamService mTeamService;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -52,22 +60,23 @@ public class HomeController {
 	@ResponseBody
 	public ResponseDto updateDeviceInRange(@RequestBody RequestDto requestDto) {
 
-		ResponseDto response = new ResponseDto();
 
-		MemberDto member = new MemberDto();
-		member.setFirstName("yossi");
-		member.setLastName("gruner");
-		member.setBluetoothMac("mac Address");
-		member.setBluetoothName("mac name");
-		member.setLastUpdateTime(System.currentTimeMillis());
-		member.setMobileNumber("+972546456");
-		member.setPanic("!!!!");
+		return mTeamService.memberDataReceived(requestDto);
+	}
+	
 
-		ArrayList<MemberDto> memberDtos = new ArrayList<MemberDto>();
-		memberDtos.add(member);
+	@RequestMapping(value = "/v1/webapp/circles", method = RequestMethod.GET)
+	@ResponseBody
+	public CirclesDto getCircles() {
 
-		response.setMembers(memberDtos);
+		return mTeamService.getCirclesDto();
+	}
+	
+	
+	@RequestMapping(value = "/v1/webapp/connections", method = RequestMethod.GET)
+	@ResponseBody
+	public ConnectionsDto getConnections() {
 
-		return response;
+		return mTeamService.getConnectionsDto();
 	}
 }
