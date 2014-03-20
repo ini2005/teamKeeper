@@ -33,6 +33,10 @@
         <activity
             android:name="com.att.team.keeper.activities.JoinRoomActivity">
         </activity>
+        <activity
+            android:name="com.att.team.keeper.activities.MobileLostPanicActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

@@ -10,5 +10,7 @@
     <string name="action_settings">Settings</string>
     <string name="continue_">Continue</string>
     <string name="join">Join</string>
+    <string name="stop_alert">Stop Alert</string>
+    <string name="left_group">You have left your group</string>
 
 </resources>
