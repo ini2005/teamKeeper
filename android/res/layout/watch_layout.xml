@@ -7,7 +7,7 @@
     <WebView 
         android:id="@+id/watch_usersWeb"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="250dp"/>
     
     <ListView 
         android:id="@+id/watch_userList"
