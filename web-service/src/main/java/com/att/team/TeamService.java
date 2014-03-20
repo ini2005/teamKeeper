@@ -24,7 +24,7 @@ import com.att.team.dtos.ResponseDto;
 @Service
 public class TeamService {
 
-	SimpleDirectedGraph<MemberDto, String> mRoomGraph;
+	SimpleDirectedGraph<MemberDto, String> mRoomGraph = new SimpleDirectedGraph<MemberDto, String>(String.class);
 	
 	Map<String, MemberDto> mMembers = new HashMap<String, MemberDto>();
 	
