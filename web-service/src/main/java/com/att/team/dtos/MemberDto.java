@@ -24,6 +24,8 @@ public class MemberDto {
 	@JsonProperty("lastUpdateTime")
 	private long mLastUpdateTime;
 	
+	@JsonProperty("imageUrl")
+	private long mImageUrl;
 
 	@JsonProperty("panic")
 	private String mPanic;
@@ -34,6 +36,7 @@ public class MemberDto {
 	
 	
 	
+
 
 	public String getFirstName() {
 		return mFirstName;
@@ -81,6 +84,14 @@ public class MemberDto {
 
 	public void setLastUpdateTime(long lastUpdateTime) {
 		mLastUpdateTime = lastUpdateTime;
+	}
+
+	public long getImageUrl() {
+		return mImageUrl;
+	}
+
+	public void setImageUrl(long imageUrl) {
+		mImageUrl = imageUrl;
 	}
 
 	public String getPanic() {
