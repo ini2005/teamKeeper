@@ -1,7 +1,5 @@
 package com.att.team.keeper.activities;
 
-import java.util.Map;
-
 import java.util.Locale;
 
 import android.app.ActionBar;
@@ -13,10 +11,6 @@ import android.app.FragmentTransaction;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.TextView;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -26,6 +20,7 @@ import android.view.MenuItem;
 import com.att.team.keeper.R;
 import com.att.team.keeper.fragments.DebugFragment;
 import com.att.team.keeper.fragments.WatchUsersFragment;
+import com.att.team.keeper.services.BluetoothService;
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
 	
@@ -84,6 +79,14 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	}
 
 	@Override
+	protected void onResume() {
+		if(mDebugFragment == null){
+			mDebugFragment = new DebugFragment();
+		}
+		BluetoothService.INSTANCE.startScanningForDevices(mDebugFragment);
+		super.onResume();
+	}
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
@@ -137,7 +140,10 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         	case 0:
         		return new WatchUsersFragment();
         	case 1:
-        		mDebugFragment = new DebugFragment(); 
+        		if(mDebugFragment == null) {
+        			
+        			mDebugFragment = new DebugFragment(); 
+        		}
         		return mDebugFragment;
         	}
         	return null;

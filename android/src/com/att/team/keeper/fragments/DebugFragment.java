@@ -38,7 +38,7 @@ public class DebugFragment extends Fragment implements IBluetoothBroadcastReceiv
 		mMyBluetoothNameTextView.setText(BluetoothService.INSTANCE.getLocalBluetoothName());
 		mMyBluetoothMacTextView.setText(BluetoothService.INSTANCE.getBluetoothMacAddress());
 
-		BluetoothService.INSTANCE.startScanningForDevices(this);
+		
 
 		super.onResume();
 	}
