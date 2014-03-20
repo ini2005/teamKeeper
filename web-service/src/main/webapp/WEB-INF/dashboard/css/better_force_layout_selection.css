@@ -1,0 +1,12 @@
+#graph_Better_force_layout_selection .node {
+  opacity: 0.5;
+}
+
+#graph_Better_force layout_selection .node:hover {
+  opacity: 1;
+}
+
+#graph_Better_force_layout_selection .link {
+  stroke: #999;
+  stroke-opacity: 0.3;
+}

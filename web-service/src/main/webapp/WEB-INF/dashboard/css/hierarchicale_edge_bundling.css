@@ -1,0 +1,40 @@
+#graph_hierarchical_edge_bundling path.arc {
+  cursor: move;
+  fill: #fff;
+}
+
+#graph_hierarchical_edge_bundling .node {
+  font-size: 10px;
+}
+
+#graph_hierarchical_edge_bundling .node:hover {
+  fill: #1f77b4;
+}
+
+#graph_hierarchical_edge_bundling .link {
+  fill: none;
+  stroke: #1f77b4;
+  stroke-opacity: .4;
+  pointer-events: none;
+}
+
+#graph_hierarchical_edge_bundling .link.source, .link.target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+#graph_hierarchical_edge_bundling .node.target {
+  fill: #d62728 !important;
+}
+
+#graph_hierarchical_edge_bundling .link.source {
+  stroke: #d62728;
+}
+
+#graph_hierarchical_edge_bundling .node.source {
+  fill: #2ca02c;
+}
+
+#graph_hierarchical_edge_bundling .link.target {
+  stroke: #2ca02c;
+}

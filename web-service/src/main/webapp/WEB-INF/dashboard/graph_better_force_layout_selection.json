@@ -1,0 +1,16 @@
+{
+  "nodes":[
+    {"name":"Inon_Stelman","group":1},
+    {"name":"Doron_Solomon","group":1},
+    {"name":"Yossi_Grunner","group":1},
+    {"name":"Yaniv_Ben_David","group":1},
+    {"name":"Royi Ozan","group":2}
+  ],
+  "links":[
+    {"source":1,"target":0,"value":10},
+    {"source":2,"target":0,"value":10},
+    {"source":3,"target":0,"value":10},
+    {"source":3,"target":2,"value":10},
+    {"source":2,"target":3,"value":10}
+  ]
+}

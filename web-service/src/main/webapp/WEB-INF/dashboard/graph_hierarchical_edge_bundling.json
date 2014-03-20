@@ -1,0 +1,6 @@
+[
+{"name":"Inon_Stelman","size":1000,"imports":["Doron_Solomon","Yossi_Gruner","Yaniv_Ben_David"]},
+{"name":"Doron_Solomon","size":1000,"imports":["Inon_Stelman","Yaniv_Ben_David"]},
+{"name":"Yossi_Gruner","size":1000,"imports":["Doron_Solomon"]},
+{"name":"Yaniv_Ben_David","size":1000,"imports":[]}
+]

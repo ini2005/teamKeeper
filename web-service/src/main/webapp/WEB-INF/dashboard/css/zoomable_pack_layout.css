@@ -1,0 +1,29 @@
+#graph_zoomable_pack_layout text {
+  font-size: 11px;
+  pointer-events: none;
+}
+
+#graph_zoomable_pack_layout text.parent {
+  fill: #1f77b4;
+}
+
+#graph_zoomable_pack_layout circle {
+  fill: #ff7f0e;
+  stroke: rgb(31, 119, 180);
+  pointer-events: all;
+}
+
+#graph_zoomable_pack_layout circle.parent {
+  fill: #1f77b4;
+  fill-opacity: .1;
+  stroke: steelblue;
+}
+
+#graph_zoomable_pack_layout circle.parent:hover {
+  stroke: #ff7f0e;
+  stroke-width: .5px;
+}
+
+#graph_zoomable_pack_layout circle.child {
+  pointer-events: none;
+}

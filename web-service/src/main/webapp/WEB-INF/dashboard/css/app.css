@@ -793,6 +793,25 @@ body {
 
 /********************** End During Device Session **********************************************/
 
+#list_of_pepole{
+	float: left;
+}
+#graph_zoomable_pack_layout{
+	float: left;
+}
+
+#graph_hierarchical_edge_bundling{
+	float: left;
+}
+#graph_Better_force_layout_selection{
+	float: left;
+}
+.pepole{
+	margin-top:10px; 
+}
+.pepole:hover{
+	color: red;
+}
 
 
 
