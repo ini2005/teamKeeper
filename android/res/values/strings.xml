@@ -1,5 +1,14 @@
 <resources>
 
     <string name="app_name">TeamKeeper</string>
+    <string name="pick_room">Pick a Room</string>
+    <string name="enter_details">Enter Details</string>
+    <string name="room_number">Room number:</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="action_settings">Settings</string>
+    <string name="continue_">Continue</string>
+    <string name="join">Join</string>
 
 </resources>
