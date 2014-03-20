@@ -42,8 +42,19 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 		mHandler = new Handler();
 	}
 
-	public void startScanningForDevices() {
-		mBluetoothBroadcastReceiver.registerDynamically(mContext, this);
+	public void startScanningForDevices(
+			IBluetoothBroadcastReceiverListener bluetoothBroadcastReceiverListener) {
+
+		List<IBluetoothBroadcastReceiverListener> bluetoothBroadcastReceiverListeners = new ArrayList<BluetoothBroadcastReceiver.IBluetoothBroadcastReceiverListener>();
+		bluetoothBroadcastReceiverListeners
+				.add(bluetoothBroadcastReceiverListener);
+		bluetoothBroadcastReceiverListeners.add(this);
+		mBluetoothBroadcastReceiver.registerDynamically(mContext,
+				bluetoothBroadcastReceiverListeners);
+	}
+
+	public void stopScanningForDevices() {
+		mBluetoothBroadcastReceiver.unregisterDynamically(mContext);
 	}
 
 	/**
@@ -135,6 +146,12 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 
 		deviceInRangeReqeust.setRequestDto(requestDto);
 		deviceInRangeReqeust.execute(this);
+
+	}
+
+	@Override
+	public void onDiscoveryStarted() {
+		
 
 	}
 

@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
-
+    
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_set_visable"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="Set Visable"/>
 
 </menu>

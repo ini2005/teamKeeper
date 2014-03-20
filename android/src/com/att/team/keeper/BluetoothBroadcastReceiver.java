@@ -1,6 +1,8 @@
 package com.att.team.keeper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,7 +20,7 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 
 	private Map<BluetoothDevice, Integer> mDeviceList = new HashMap<BluetoothDevice, Integer>();
 
-	private IBluetoothBroadcastReceiverListener mBluetoothBroadcastReceiverListener;
+	private List<IBluetoothBroadcastReceiverListener> mBluetoothBroadcastReceiverListeners = new ArrayList<BluetoothBroadcastReceiver.IBluetoothBroadcastReceiverListener>();
 
 	private BluetoothAdapter mAdapter;
 
@@ -33,6 +35,10 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 			mDeviceList.put(device, rssi);
 		} else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
 			Log.d(TAG, "\nDiscovery Started...");
+			for (IBluetoothBroadcastReceiverListener mBluetoothBroadcastReceiverListener : mBluetoothBroadcastReceiverListeners) {
+				mBluetoothBroadcastReceiverListener.onDiscoveryStarted();
+			}
+
 		} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
 			Log.d(TAG, "\nDiscovery Finished");
 
@@ -44,8 +50,10 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 						+ device + ", rssi " + mDeviceList.get(device) + "dBm");
 			}
 
-			mBluetoothBroadcastReceiverListener
-					.onDiscoveryFinished(mDeviceList);
+			for (IBluetoothBroadcastReceiverListener mBluetoothBroadcastReceiverListener : mBluetoothBroadcastReceiverListeners) {
+				mBluetoothBroadcastReceiverListener
+						.onDiscoveryFinished(mDeviceList);
+			}
 
 			mDeviceList.clear();
 			mAdapter.startDiscovery();
@@ -63,12 +71,12 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 	 *            An application context.
 	 */
 	public synchronized void registerDynamically(Context applicationContext,
-			IBluetoothBroadcastReceiverListener listener) {
+			List<IBluetoothBroadcastReceiverListener> listeners) {
 		if (mIsRegister == true) {
 			return;
 		}
 
-		mBluetoothBroadcastReceiverListener = listener;
+		mBluetoothBroadcastReceiverListeners.addAll(listeners);
 
 		// Register the BroadcastReceiver
 		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
@@ -82,7 +90,7 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 		// Getting the Bluetooth adapter
 		mAdapter = BluetoothAdapter.getDefaultAdapter();
 		Log.d(TAG, "Adapter: " + mAdapter);
-		
+
 		CheckBTState(applicationContext);
 
 		mIsRegister = true;
@@ -98,7 +106,7 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 	public synchronized void unregisterDynamically(Context applicationContext) {
 
 		applicationContext.getApplicationContext().unregisterReceiver(this);
-
+		mBluetoothBroadcastReceiverListeners = null;
 		mIsRegister = false;
 	}
 
@@ -127,6 +135,8 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 	}
 
 	public interface IBluetoothBroadcastReceiverListener {
+
+		public void onDiscoveryStarted();
 
 		public void onDiscoveryFinished(Map<BluetoothDevice, Integer> devices);
 
