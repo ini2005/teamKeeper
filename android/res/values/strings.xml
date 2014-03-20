@@ -3,6 +3,8 @@
     <string name="app_name">TeamKeeper</string>
     <string name="pick_room">Pick a Room</string>
     <string name="enter_details">Enter Details</string>
+    <string name="watch_users">Watch</string>
+    <string name="debug">Debug</string>
     <string name="room_number">Room number:</string>
     <string name="phone_number">Phone number:</string>
     <string name="first_name">First name:</string>

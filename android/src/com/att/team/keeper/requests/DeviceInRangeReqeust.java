@@ -22,7 +22,7 @@ public class DeviceInRangeReqeust  extends BaseRequest<RequestDto, ResponseDto> 
 
 	@Override
 	public String getUrl() {
-		return "http://10.114.20.49:8080/team/v1/agent/deviceInRange";
+		return "http://10.114.20.52:8080/team/v1/agent/deviceInRange";
 	}
 
 	@Override

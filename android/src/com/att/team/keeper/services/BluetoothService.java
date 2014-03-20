@@ -34,6 +34,14 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 	private BluetoothBroadcastReceiver mBluetoothBroadcastReceiver;
 
 	private Context mContext;
+	
+	private List<MemberDto> mMembersList;
+	
+	private IResponseListener mResponseListener = null;
+	
+	public interface IResponseListener {
+		void onResponse(List<MemberDto> list);
+	}
 
 	public void init(Context context) {
 		mContext = context;
@@ -96,6 +104,12 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 	@Override
 	public void onSuccess(ResponseDto obj) {
 		Log.d(TAG, "success");
+		
+		mMembersList = obj.getMembers();
+		
+		if (mResponseListener != null) {
+			mResponseListener.onResponse(mMembersList);
+		}
 	}
 
 	@Override
@@ -153,6 +167,14 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 	public void onDiscoveryStarted() {
 		
 
+	}
+	
+	public void setResponseListener(IResponseListener listener) {
+		mResponseListener = listener;
+	}
+	
+	public List<MemberDto> getLatestMembers() {
+		return mMembersList;
 	}
 
 }

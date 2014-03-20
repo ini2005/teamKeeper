@@ -2,47 +2,79 @@ package com.att.team.keeper.activities;
 
 import java.util.Map;
 
+import java.util.Locale;
+
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-import com.att.team.keeper.BluetoothBroadcastReceiver.IBluetoothBroadcastReceiverListener;
 import com.att.team.keeper.R;
-import com.att.team.keeper.services.BluetoothService;
+import com.att.team.keeper.fragments.DebugFragment;
+import com.att.team.keeper.fragments.WatchUsersFragment;
 
-public class MainActivity extends Activity implements
-		IBluetoothBroadcastReceiverListener {
-
-	private TextView mMyBluetoothNameTextView;
-	private TextView mMyBluetoothMacTextView;
-	private TextView mLoggerTextView;
-
+public class MainActivity extends Activity implements ActionBar.TabListener {
+	
+	private SectionsPagerAdapter mSectionsPagerAdapter;
+	
+	private ViewPager mViewPager;
+	
+	private DebugFragment mDebugFragment;
+	
+	//private static final String TAG = MainActivity.class.getSimpleName();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.activity_mian);
-
-		mMyBluetoothNameTextView = (TextView) findViewById(R.id.bluetooth_name_textView);
-		mMyBluetoothMacTextView = (TextView) findViewById(R.id.bluetooth_mac_textView);
-		mLoggerTextView = (TextView) findViewById(R.id.out);
-
 		super.onCreate(savedInstanceState);
-	}
+		setContentView(R.layout.main_layout);
+		
+		// Set up the action bar.
+        final ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-	@Override
-	protected void onResume() {
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
-		mMyBluetoothNameTextView.setText(BluetoothService.INSTANCE.getLocalBluetoothName());
-		mMyBluetoothMacTextView.setText(BluetoothService.INSTANCE.getBluetoothMacAddress());
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.main_viewPager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        
+        // When swiping between different sections, select the corresponding
+        // tab. We can also use ActionBar.Tab#select() to do this if we have
+        // a reference to the Tab.
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                actionBar.setSelectedNavigationItem(position);
+            }
+        });
 
-		BluetoothService.INSTANCE.startScanningForDevices(this);
-
-		super.onResume();
+        // For each of the sections in the app, add a tab to the action bar.
+        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+            // Create a tab with text corresponding to the page title defined by
+            // the adapter. Also specify this Activity object, which implements
+            // the TabListener interface, as the callback (listener) for when
+            // this tab is selected.
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setTabListener(this));
+        }
 	}
 
 	@Override
@@ -72,40 +104,62 @@ public class MainActivity extends Activity implements
 			startActivity(discoverableIntent);
 
 			return true;
-		} else if (id == R.id.action_clear_log) {
-			mLoggerTextView.setText("");
+		} else if(id == R.id.action_clear_log) {
+			mDebugFragment.clearLog();
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	@Override
-	public void onDiscoveryFinished(Map<BluetoothDevice, Integer> devices) {
-
-		if (devices.keySet().size() == 0) {
-			return;
-		}
-
-		for (BluetoothDevice bluetoothDevice : devices.keySet()) {
-			mLoggerTextView.append("\nDeviceName: ");
-			mLoggerTextView.append(bluetoothDevice.getName() == null ? " "
-					: bluetoothDevice.getName());
-			mLoggerTextView.append("\nDeviceMac: ");
-			mLoggerTextView.append(bluetoothDevice.getAddress() == null ? " "
-					: bluetoothDevice.getAddress());
-			mLoggerTextView.append(" Device RSSI: ");
-			mLoggerTextView.append(devices.get(bluetoothDevice).toString());
-		}
-
-		mLoggerTextView.append("\nDiscovery Finished...");
-
-		mLoggerTextView.append("\n-----------------------------------");
-
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		mViewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
-	public void onDiscoveryStarted() {
-		mLoggerTextView.append("\nDiscovery Started...");
-
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		
 	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		
+	}
+	
+	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+        	switch (position) {
+        	case 0:
+        		return new WatchUsersFragment();
+        	case 1:
+        		mDebugFragment = new DebugFragment(); 
+        		return mDebugFragment;
+        	}
+        	return null;
+        }
+
+        @Override
+        public int getCount() {
+            // Show 2 total pages.
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            Locale l = Locale.getDefault();
+            switch (position) {
+                case 0:
+                    return getString(R.string.watch_users).toUpperCase(l);
+                case 1:
+                    return getString(R.string.debug).toUpperCase(l);
+            }
+            return null;
+        }
+    }
 
 }
