@@ -236,8 +236,8 @@ var mainService = function($log, $http) {
 		var color = d3.scale.category10();
 		function colorByGroup(d) { return color(group(d)); }
 		
-		var width = 400,
-		    height = 400;
+		var width = 800,
+		    height = 800;
 		
 		var svg = d3.select('#graph_Better_force_layout_selection')
 		    .append('svg')
@@ -331,5 +331,22 @@ var mainService = function($log, $http) {
 		        .start();
 		//});
 	
+	};
+	
+	this.members = function(data){
+		if(data.members.length > 0){
+			var members = '<ul>';
+			for(var i=0;i<data.members.length;i++){
+		        var obj = data.members[i];
+		        var name = obj.firstName + " " + obj.lastName;
+		        var imageUrl = obj.imageUrl;
+		        console.log("name: " + name);
+		        console.log("imageUrl: " + imageUrl);
+		        members +='<li class="pepole"><img src="' + imageUrl + '" width="40px" height="40px"/>' + name + '</li>';
+		    }
+			members +='</ul>';
+			console.log(members);
+			$("#list_of_pepole").html(members);
+		}
 	};
 };

@@ -800,6 +800,7 @@ body {
 	padding-top: 75px;
 	padding-left: 20px;
 }
+/*
 #graph_zoomable_pack_layout{
 	float: left;
 	width: 400px;
@@ -810,17 +811,21 @@ body {
 	float: left;
 	width: 400px;
 	height: 400px;
-}
+}*/
 #graph_Better_force_layout_selection{
 	float: left;
-	width: 400px;
-	height: 400px;
+	width: 800px;
+	height: 800px;
+	padding-top: 10px;
 }
 .pepole{
 	margin-top:10px; 
 }
 .pepole:hover{
 	color: red;
+}
+.pepole img{
+	margin-right:10px; 
 }
 
 
