@@ -30,6 +30,8 @@ public class TeamService {
 
 	private static final long MAX_TIME_ALONE_BEFORE_PANIC_MILLIS = 10000;
 	
+	private static final String BASE_IMAGE_STORE_PATH = "http://ronen.doronsolomon.com/teamkeeper/";
+	
 	SimpleDirectedGraph<MemberDto, String> mRoomGraph = new SimpleDirectedGraph<MemberDto, String>(String.class);
 	
 	Map<String, Long> mLonelyMembersDurationsMap = new HashMap<String, Long>();
@@ -196,6 +198,7 @@ public class TeamService {
 			}
 		}else{
 			
+			memberDto.setImageUrl(BASE_IMAGE_STORE_PATH + memberDto.getBluetoothMac().replaceAll(":", "_") + ".png");
 			mRoomGraph.addVertex(memberDto);
 		}
 		
