@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -30,6 +31,7 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 
 	static final String TAG = "BluetoothService";
 
+	public final static String KEY_MAC_ADDRESS = "mac";
 	private NetworkThread mNetworkThread;
 
 	private Handler mHandler;
@@ -41,6 +43,9 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 	private List<MemberDto> mMembersList;
 	
 	private IResponseListener mResponseListener = null;
+	
+	boolean mMacSet = false;
+	
 	
 	public interface IResponseListener {
 		void onResponse(List<MemberDto> list);
@@ -101,6 +106,15 @@ public enum BluetoothService implements IRequestResult<ResponseDto>,
 			return null;
 		}
 
+		
+		if(mMacSet == false){
+			
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
+			Editor editor = sharedPreferences.edit();
+			editor.putString(KEY_MAC_ADDRESS, mBluetoothAdapter.getAddress());
+			editor.commit();
+			mMacSet = true;
+		}
 		return mBluetoothAdapter.getAddress();
 	}
 

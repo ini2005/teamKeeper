@@ -1,26 +1,17 @@
 package com.att.team.keeper.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.att.team.keeper.R;
-import com.att.team.keeper.dtos.MemberDto;
-import com.att.team.keeper.services.BluetoothService;
-import com.att.team.keeper.services.BluetoothService.IResponseListener;
-
 import android.app.Fragment;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+
+import com.att.team.keeper.R;
+import com.att.team.keeper.services.BluetoothService;
 
 public class WatchWebUsersFragment extends Fragment {
 	
@@ -32,9 +23,11 @@ public class WatchWebUsersFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.watch_web_layout, null);
 
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+		String mac = sharedPreferences.getString(BluetoothService.KEY_MAC_ADDRESS, null);
 		WebView usersWebView = (WebView) view.findViewById(R.id.watch_usersWeb);
 		usersWebView.setWebViewClient(new InlineWebViewClient());
-		usersWebView.loadUrl("http://www.google.com");
+		usersWebView.loadUrl("http://10.114.20.52:8080/team/dashboard/index2.html?mac=" + mac);
 
 		return view;
 	}

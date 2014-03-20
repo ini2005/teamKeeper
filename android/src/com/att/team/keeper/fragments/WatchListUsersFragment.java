@@ -3,24 +3,25 @@ package com.att.team.keeper.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.att.team.keeper.R;
-import com.att.team.keeper.dtos.MemberDto;
-import com.att.team.keeper.services.BluetoothService;
-import com.att.team.keeper.services.BluetoothService.IResponseListener;
-
 import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.att.team.keeper.R;
+import com.att.team.keeper.activities.InformMemberLostActivity;
+import com.att.team.keeper.activities.InformMemberLostActivity.InformMemberLostExtras;
+import com.att.team.keeper.dtos.MemberDto;
+import com.att.team.keeper.services.BluetoothService;
+import com.att.team.keeper.services.BluetoothService.IResponseListener;
 
 public class WatchListUsersFragment extends Fragment implements IResponseListener {
 	
@@ -58,6 +59,11 @@ public class WatchListUsersFragment extends Fragment implements IResponseListene
 		mAdapter = new UsersAdapter(list);
 		mUsersList.setAdapter(mAdapter);
 		
+		Intent intent = new Intent(this.getActivity(), InformMemberLostActivity.class);
+		intent.putExtra(InformMemberLostExtras.NAMES_EXTRA, "TESTTTT!!!!!!!");
+		intent.putExtra(InformMemberLostExtras.NUMBER_OF_LOSTS_EXTRA, 1);
+		
+		getActivity().startActivity(intent);
 		Log.d(TAG, "Received members list with size " + list.size());
 	}
 	

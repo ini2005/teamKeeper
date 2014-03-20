@@ -14,7 +14,7 @@ public class InformMemberLostActivity extends Activity {
 	
 	private MediaPlayer mMediaPlayer;
 	
-	private interface InformMemberLostExtras {
+	public interface InformMemberLostExtras {
 		static final String NAMES_EXTRA = "NAMES_EXTRA";
 		static final String NUMBER_OF_LOSTS_EXTRA = "NUMBER_OF_LOSTS";
 	}
