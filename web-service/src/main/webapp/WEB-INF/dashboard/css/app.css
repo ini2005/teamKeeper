@@ -11,7 +11,7 @@ body {
 }
 
 .main_width {
-	width: 898px;
+	/*width: 898px;*/
 }
 
 .ams_header {
@@ -795,16 +795,26 @@ body {
 
 #list_of_pepole{
 	float: left;
+	width: 240px;
+	height: 325px;
+	padding-top: 75px;
+	padding-left: 20px;
 }
 #graph_zoomable_pack_layout{
 	float: left;
+	width: 400px;
+	height: 400px;
 }
 
 #graph_hierarchical_edge_bundling{
 	float: left;
+	width: 400px;
+	height: 400px;
 }
 #graph_Better_force_layout_selection{
 	float: left;
+	width: 400px;
+	height: 400px;
 }
 .pepole{
 	margin-top:10px; 

@@ -5,11 +5,10 @@ var mainService = function($log, $http) {
 	$log.debug('mainService');
 
 	
-	this.graph_zoomable_pack_layout = function() {
-
-		var w = 500,
-		    h = 500,
-		    r = 420,
+	this.graph_zoomable_pack_layout = function(data) {
+		var w = 400,
+		    h = 400,
+		    r = 300,
 		    x = d3.scale.linear().range([0, r]),
 		    y = d3.scale.linear().range([0, r]),
 		    node,
@@ -25,7 +24,7 @@ var mainService = function($log, $http) {
 		  .append("svg:g")
 		    .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
 
-		d3.json("graph_zoomable_pack_layout.json", function(data) {
+		//d3.json("graph_zoomable_pack_layout.json", function(data) {
 		  node = root = data;
 
 		  var nodes = pack.nodes(root);
@@ -51,7 +50,7 @@ var mainService = function($log, $http) {
 		      .text(function(d) { return d.name; });
 
 		  d3.select(window).on("click", function() { zoom(root); });
-		});
+		//});
 
 		function zoom(d, i) {
 		  var k = r / d.r / 2;
@@ -229,7 +228,7 @@ var mainService = function($log, $http) {
 		}
 	};
 	
-	this.graph_Better_force_layout_selection = function(){
+	this.graph_Better_force_layout_selection = function(data){
 	
 		function name(d) { return d.name; }
 		function group(d) { return d.group; }
@@ -294,7 +293,7 @@ var mainService = function($log, $http) {
 		        .attr('d', function(d) { return 'M'+d.join(',')+'Z'; });
 		});
 		
-		d3.json('graph_better_force_layout_selection.json', function(err, data) {
+		//d3.json('graph_better_force_layout_selection.json', function(err, data) {
 		
 		    data.nodes.forEach(function(d, i) {
 		        d.id = i;
@@ -330,7 +329,11 @@ var mainService = function($log, $http) {
 		        .nodes( data.nodes )
 		        .links( data.links )
 		        .start();
-		});
+		//});
 	
+	};
+	
+	this.pepole_list = function(data){
+		
 	};
 };
