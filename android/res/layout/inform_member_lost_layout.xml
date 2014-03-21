@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/inform_panic_background_shape"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical" >
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical" >
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/informLostMember_informText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="50sp"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:text="@string/left_group"
+            android:textSize="60sp"
+            app:typeface="roboto_thin" />
 
-        <Button
-            android:id="@+id/informLostMember_stopAlertButton"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/stop_alert"
-            android:textSize="30sp"
-            android:textColor="#DDDDDD"
-            android:layout_gravity="center_horizontal" />
-        
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/mobileLostPanic_stopAlertButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick_stopAlert"
+                android:src="@android:drawable/btn_dialog" />
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick_map"
+                android:src="@android:drawable/ic_dialog_map" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick_phone"
+                android:src="@android:drawable/ic_menu_call" />
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:src="@drawable/missing" />
+
+</FrameLayout>

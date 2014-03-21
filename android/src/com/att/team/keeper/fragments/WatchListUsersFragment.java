@@ -75,7 +75,7 @@ public class WatchListUsersFragment extends Fragment implements
 			if (TextUtils.isEmpty(memberDto.getPanic()) == false) {
 
 				if (BluetoothService.INSTANCE.getBluetoothMacAddress()
-						.equalsIgnoreCase(memberDto.getBluetoothMac())) {
+						.equalsIgnoreCase(memberDto.getBluetoothMac()) == true) {
 					Log.d(TAG, "i am lost :(");
 					Intent intent = new Intent(this.getActivity(),
 							MobileLostPanicActivity.class);
