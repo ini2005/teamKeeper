@@ -104,6 +104,8 @@ public class WatchListUsersFragment extends Fragment implements
 					getActivity().startActivity(intent);
 
 				}
+				
+				break;
 
 			}
 		}

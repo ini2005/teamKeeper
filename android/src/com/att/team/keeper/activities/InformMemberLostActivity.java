@@ -48,6 +48,7 @@ public class InformMemberLostActivity extends Activity {
 
 	public void onClick_stopAlert(View v) {
 		mMediaPlayer.stop();
+		finish();
 
 	}
 
