@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:paddingLeft="2dp"
-    android:paddingRight="2dp"
-    android:orientation="horizontal" >
-    
-    <ImageView 
+    android:layout_height="34dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="2dp" >
+
+    <ImageView
         android:id="@+id/watchItem_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginRight="5dp"/>
-    
-    <TextView 
-        android:id="@+id/watchItem_firstName"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="18sp"
-        android:layout_marginRight="5dp"/>
-    
-    <TextView 
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/watchItem_lastName"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="18sp"
-        android:layout_marginRight="5dp"/>
-    
-    <TextView 
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:typeface="roboto_thin" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/watchItem_firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:typeface="roboto_thin" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/watchItem_phoneNumber"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="18sp"/>
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:typeface="roboto_thin" />
 
 </LinearLayout>

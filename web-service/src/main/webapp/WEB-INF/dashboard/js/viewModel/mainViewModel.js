@@ -9,7 +9,7 @@ var mainViewModel = function($scope, $log, $state, $stateParams, mainService) {
 	/*
 	$.ajax({
 		type : "GET",
-		url : "http://localhost:8089/team/v1/webapp/circles",
+		url : "http://10.0.0.3:8080/team/v1/webapp/circles",
 		contentType: "application/json",
 		async : true,
 		success : function(data, textStatus, request) {
@@ -24,7 +24,7 @@ var mainViewModel = function($scope, $log, $state, $stateParams, mainService) {
 	*/
 	$.ajax({
 		type : "GET",
-		url : "http://localhost:8089/team/v1/webapp/connections",
+		url : "http://10.0.0.3:8080/team/v1/webapp/connections",
 		contentType: "application/json",
 		async : true,
 		success : function(data, textStatus, request) {
@@ -39,7 +39,7 @@ var mainViewModel = function($scope, $log, $state, $stateParams, mainService) {
 	
 	$.ajax({
 		type : "GET",
-		url : "http://localhost:8089/team/v1/webapp/members",
+		url : "http://10.0.0.3:8080/team/v1/webapp/members",
 		contentType: "application/json",
 		async : true,
 		success : function(data, textStatus, request) {

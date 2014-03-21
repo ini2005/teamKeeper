@@ -27,7 +27,7 @@ public class WatchWebUsersFragment extends Fragment {
 		String mac = sharedPreferences.getString(BluetoothService.KEY_MAC_ADDRESS, null);
 		WebView usersWebView = (WebView) view.findViewById(R.id.watch_usersWeb);
 		usersWebView.setWebViewClient(new InlineWebViewClient());
-		usersWebView.loadUrl("http://10.114.20.52:8080/team/dashboard/index2.html?mac=" + mac);
+		usersWebView.loadUrl("http://10.0.0.3:8080/team/dashboard/index2.html?mac=" + mac);
 
 		return view;
 	}

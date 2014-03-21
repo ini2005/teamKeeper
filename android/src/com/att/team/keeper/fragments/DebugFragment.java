@@ -46,7 +46,7 @@ public class DebugFragment extends Fragment implements IBluetoothBroadcastReceiv
 	@Override
 	public void onDiscoveryFinished(Map<BluetoothDevice, Integer> devices) {
 
-		if (devices.keySet().size() == 0) {
+		if (devices.keySet().size() == 0 || mLoggerTextView == null) {
 			return;
 		}
 

@@ -179,13 +179,12 @@
 	
   	
   	<div id="graph_Better_force_layout_selection">
-  		
   	</div>
 	<script>
 		var parameter = getUrlParameters("mac", "", true);
 		$.ajax({
 			type : "GET",
-			url : "http://localhost:8089/team/v1/webapp/connections",
+			url : "http://10.0.0.3:8080/team/v1/webapp/connections",
 			data:{
 				"mac": parameter
 			},

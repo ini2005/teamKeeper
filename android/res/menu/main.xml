@@ -5,7 +5,7 @@
         android:id="@+id/action_set_visable"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Set Visable"/>
+        android:title="Set Visible"/>
 
         <item
         android:id="@+id/action_clear_log"

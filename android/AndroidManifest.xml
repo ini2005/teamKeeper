@@ -6,10 +6,9 @@
     <!-- Bluetooth -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
-    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
@@ -19,25 +18,22 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Holo.Light" >
         <activity
             android:name="com.att.team.keeper.activities.MainActivity2"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name="com.att.team.keeper.activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
-        
-        <activity
-            android:name="com.example.android.wizardpager.MainWizardActivity">
+        <activity android:name="com.example.android.wizardpager.MainWizardActivity" >
         </activity>
         <activity
             android:name="com.att.team.keeper.activities.SplashActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,11 +42,11 @@
         </activity>
         <activity
             android:name="com.att.team.keeper.activities.MobileLostPanicActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.att.team.keeper.activities.InformMemberLostActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
