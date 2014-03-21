@@ -104,6 +104,13 @@ public class WatchListUsersFragment extends Fragment implements IResponseListene
 			if (imageUrl != null) {				
 				image.setImageURI(Uri.parse(imageUrl));
 			}
+			
+//			if (member.getPanic() == "Panic") {				
+//				firstName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+//				lastName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+//				phoneNumber.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+//			}
+			
 			firstName.setText(member.getFirstName());
 			lastName.setText(member.getLastName());
 			phoneNumber.setText(member.getMobileNumber());
