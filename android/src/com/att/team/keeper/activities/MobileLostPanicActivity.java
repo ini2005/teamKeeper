@@ -1,10 +1,12 @@
 package com.att.team.keeper.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 
 import com.att.team.keeper.R;
@@ -13,6 +15,8 @@ import com.att.team.keeper.TeamKeeperApplication;
 public class MobileLostPanicActivity extends Activity {
 
 	private MediaPlayer mMediaPlayer;
+	
+	private Vibrator mVibrator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,12 @@ public class MobileLostPanicActivity extends Activity {
 
 		mMediaPlayer = MediaPlayer.create(this, R.raw.alert);
 		mMediaPlayer.start();
+		
+		mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+		if (mVibrator.hasVibrator()) {
+			long[] pattern = new long[]{0, 500, 500};
+			mVibrator.vibrate(pattern, 0);
+		}
 
 		getActionBar().hide();
 		
@@ -35,7 +45,6 @@ public class MobileLostPanicActivity extends Activity {
 	}
 	
 	public void onClick_stopAlert(View v) {
-		mMediaPlayer.stop();
 		finish();
 
 	}
@@ -58,6 +67,16 @@ public class MobileLostPanicActivity extends Activity {
 		String number = "tel:" + "+972523551288";
         Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(number)); 
         startActivity(callIntent);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		mMediaPlayer.stop();
+		if (mVibrator.hasVibrator()) {
+			mVibrator.cancel();
+		}
 	}
 
 }

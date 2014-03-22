@@ -4,17 +4,20 @@ import com.att.team.keeper.R;
 import com.att.team.keeper.TeamKeeperApplication;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class InformMemberLostActivity extends Activity {
 
 	private MediaPlayer mMediaPlayer;
+	
+	private Vibrator mVibrator;
 
 	public interface InformMemberLostExtras {
 		static final String NAMES_EXTRA = "NAMES_EXTRA";
@@ -42,6 +45,12 @@ public class InformMemberLostActivity extends Activity {
 
 		mMediaPlayer = MediaPlayer.create(this, R.raw.alert);
 		mMediaPlayer.start();
+		
+		mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+		if (mVibrator.hasVibrator()) {
+			long[] pattern = new long[]{0, 500, 500};
+			mVibrator.vibrate(pattern, 0);
+		}
 
 		getActionBar().hide();
 
@@ -56,7 +65,6 @@ public class InformMemberLostActivity extends Activity {
 	}
 
 	public void onClick_stopAlert(View v) {
-		mMediaPlayer.stop();
 		finish();
 
 	}
@@ -91,6 +99,16 @@ public class InformMemberLostActivity extends Activity {
 				numberOfLosts);
 		intent.putExtras(extras);
 		return intent;
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		mMediaPlayer.stop();
+		if (mVibrator.hasVibrator()) {
+			mVibrator.cancel();
+		}
 	}
 
 }
