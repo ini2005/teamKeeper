@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.att.team.keeper.R;
+import com.att.team.keeper.TeamKeeperApplication;
 import com.att.team.keeper.activities.InformMemberLostActivity;
 import com.att.team.keeper.activities.InformMemberLostActivity.InformMemberLostExtras;
 import com.att.team.keeper.activities.MobileLostPanicActivity;
@@ -95,6 +96,11 @@ public class WatchListUsersFragment extends Fragment implements
 			return;
 		}
 
+		if(TeamKeeperApplication.isPanicAlertOn == true) {
+			return;
+			
+		}
+		
 		for (MemberDto memberDto : list) {
 			if (TextUtils.isEmpty(memberDto.getPanic()) == false) {
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.att.team.keeper.R;
+import com.att.team.keeper.TeamKeeperApplication;
 
 public class MobileLostPanicActivity extends Activity {
 
@@ -22,9 +23,17 @@ public class MobileLostPanicActivity extends Activity {
 		mMediaPlayer.start();
 
 		getActionBar().hide();
+		
+		TeamKeeperApplication.isPanicAlertOn = true;
 
 	}
 
+	@Override
+	protected void onDestroy() {
+		TeamKeeperApplication.isPanicAlertOn = false;
+		super.onDestroy();
+	}
+	
 	public void onClick_stopAlert(View v) {
 		mMediaPlayer.stop();
 		finish();

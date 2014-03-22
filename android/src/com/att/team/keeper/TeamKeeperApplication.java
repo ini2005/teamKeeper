@@ -11,6 +11,9 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 public class TeamKeeperApplication extends Application {
 
+	
+	public static boolean isPanicAlertOn = false;
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();

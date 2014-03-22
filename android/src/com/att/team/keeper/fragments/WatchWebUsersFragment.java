@@ -68,10 +68,16 @@ public class WatchWebUsersFragment extends Fragment {
 
 	@Override
 	public void onDestroyView() {
-		mHandler.removeMessages(0);
+		mHandler.removeCallbacksAndMessages(null);
 		super.onDestroyView();
 	}
 
+	@Override
+	public void onDestroy() {
+		mHandler.removeCallbacksAndMessages(null);
+		super.onDestroy();
+	}
+	
 	private class InlineWebViewClient extends WebViewClient {
 		@Override
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {

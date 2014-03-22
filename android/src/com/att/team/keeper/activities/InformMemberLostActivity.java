@@ -1,6 +1,7 @@
 package com.att.team.keeper.activities;
 
 import com.att.team.keeper.R;
+import com.att.team.keeper.TeamKeeperApplication;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -44,6 +45,14 @@ public class InformMemberLostActivity extends Activity {
 
 		getActionBar().hide();
 
+		TeamKeeperApplication.isPanicAlertOn = true;
+
+	}
+
+	@Override
+	protected void onDestroy() {
+		TeamKeeperApplication.isPanicAlertOn = false;
+		super.onDestroy();
 	}
 
 	public void onClick_stopAlert(View v) {
