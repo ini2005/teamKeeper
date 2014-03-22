@@ -58,12 +58,6 @@ public class InformMemberLostActivity extends Activity {
 
 	}
 
-	@Override
-	protected void onDestroy() {
-		TeamKeeperApplication.isPanicAlertOn = false;
-		super.onDestroy();
-	}
-
 	public void onClick_stopAlert(View v) {
 		finish();
 
@@ -103,6 +97,7 @@ public class InformMemberLostActivity extends Activity {
 	
 	@Override
 	protected void onDestroy() {
+		TeamKeeperApplication.isPanicAlertOn = false;
 		super.onDestroy();
 		
 		mMediaPlayer.stop();
