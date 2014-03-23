@@ -808,14 +808,14 @@ body {
 
 #pepole{
 	float: left;
-	width: 240px;
+	width: 350px;
 	padding-left: 20px;
 }
 
 #list_of_pepole{
 	
 }
-#list_of_pepole li{
+#list_of_pepole > li{
 	border: 1px solid;
 	border-radius: 10px;
 	font-size: 16px;
@@ -826,9 +826,9 @@ body {
 }
 #graph_container{
 	float: left;
-	width: 800px;
+	width: 700px;
 	height: 750px;
-	margin-left:30px;
+	margin-left:60px;
 }
 #graph_Better_force_layout_selection{
 	border: solid 1px;
@@ -839,7 +839,7 @@ body {
 .pepole:hover{
 	color: blue;
 }
-.pepole img{
+h4 img{
 	margin-right:10px; 
 }
 .background_red{
@@ -855,6 +855,10 @@ h1{
 }
 .clear{
 	clear: both;
+}
+.panel-group{
+	float: left;
+	width: 350px;
 }
 
 

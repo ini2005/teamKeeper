@@ -236,7 +236,7 @@ var mainService = function($log, $http) {
 		var color = d3.scale.category10();
 		function colorByGroup(d) { return color(group(d)); }
 		
-		var width = 800,
+		var width = 700,
 		    height = 600;
 		
 		var svg = d3.select('#graph_Better_force_layout_selection svg')
@@ -334,21 +334,81 @@ var mainService = function($log, $http) {
 	
 	this.members = function(data){
 		if(data.members.length > 0){
-			var members = '<ul>';
+			var members = '';
 			for(var i=0;i<data.members.length;i++){
 		        var obj = data.members[i];
-		        var name = obj.firstName + " " + obj.lastName;
+		        var name = obj.firstName.trim() + " " + obj.lastName.trim();
 		        var imageUrl = obj.imageUrl;
 		        console.log("name: " + name);
 		        console.log("imageUrl: " + imageUrl);
-		        if(obj.panic == "PANIC!!!"){
-		        	members +='<li class="pepole background_red">';
-		        }else{
-		        	members +='<li class="pepole">';
-		        }
-		        members +='<img src="' + imageUrl + '" width="40px" height="40px"/>' + name + '</li>';
+		        //
+		        	members +='<div class="panel-group" id="accordion">';
+		        	members +='<div class="panel panel-default">';
+		        	if(obj.panic == "PANIC!!!"){
+		        		members +='<div class="panel-heading" style="background-color:red;">';
+		        	}else{
+		        		members +='<div class="panel-heading">';
+		        	}
+		        	members +='<h4 class="panel-title">';
+		        	members +='<a data-toggle="collapse" data-parent="#accordion" href="#' + obj.firstName.trim() + '">';
+		        	members += '<img src="' + imageUrl + '" width="40px" height="40px"/>' + name;
+		        	members +='</a>';
+		        	members +='</h4>';
+		        	members +=' </div>';
+		        	members +='<div id="' + obj.firstName.trim() + '" class="panel-collapse collapse">';
+		        	members +='<div class="panel-body">';
+		        	members +='<table>';
+		        	members +='<tr>';
+		        	members +='<td>';
+		        	members +='Mobile Number:';
+		        	members +='</td>';
+		        	members +='<td>&nbsp;&nbsp;&nbsp;</td>';
+		        	members +='<td>';
+		        	members +=obj.mobileNumber + '&nbsp;&nbsp;&nbsp;';
+		        	members +='</td>';
+		        	members +='</tr>';
+		        	members +='<tr>';
+		        	members +='<td>';
+		        	members +='Bbluetooth Mac:';
+		        	members +='</td>';
+		        	members +='<td>&nbsp;&nbsp;&nbsp;</td>';
+		        	members +='<td>';
+		        	members +=obj.bluetoothMac;
+		        	members +='</td>';
+		        	members +='</tr>';
+		        	members +='<tr>';
+		        	members +='<td>';
+		        	if(obj.lastSeenBy != null){
+			        	members +='Last Seen By:';
+			        	members +='</td>';
+			        	members +='<td>&nbsp;&nbsp;&nbsp;</td>';
+			        	members +='<td>';
+			        	members +='<ul>';
+			        	for(var key in obj.lastSeenBy){
+				        	members +='<li>';
+				        	members +=obj.lastSeenBy[key].name + ' ' + obj.lastSeenBy[key].lastName;
+				        	members +='</li>';
+				        }
+			        	members +='</ul>';
+			        	members +='</td>';
+			        	members +='</tr>';
+		        	}
+		        	members +='</table>';
+		        	members +='</div>';
+		        	members +='</div>';
+		        	members +='</div>';
+		        	members +='</div>';
+		        	
+		        	
+		        	
+		        	
+		        	//members +='<li class="pepole background_red">';
+		        //}else{
+		        	//members +='<li class="pepole">';
+		       // }
+		       // members +='<img src="' + imageUrl + '" width="40px" height="40px"/>' + name + '</li>';
 		    }
-			members +='</ul>';
+			members +='';
 			console.log(members);
 			$("#list_of_pepole").html(members);
 		}
