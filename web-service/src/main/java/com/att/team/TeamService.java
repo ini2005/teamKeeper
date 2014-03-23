@@ -28,7 +28,7 @@ import com.att.team.dtos.ResponseDto;
 @Service
 public class TeamService {
 
-	private static final long MAX_TIME_ALONE_BEFORE_PANIC_MILLIS = 10000;
+	private static final long MAX_TIME_ALONE_BEFORE_PANIC_MILLIS = 20000;
 	
 	private static final String BASE_IMAGE_STORE_PATH = "http://ronen.doronsolomon.com/teamkeeper/";
 	
