@@ -27,6 +27,7 @@ import com.att.team.keeper.TeamKeeperApplication;
 import com.att.team.keeper.activities.InformMemberLostActivity;
 import com.att.team.keeper.activities.InformMemberLostActivity.InformMemberLostExtras;
 import com.att.team.keeper.activities.MobileLostPanicActivity;
+import com.att.team.keeper.dtos.LastSeenByEntry;
 import com.att.team.keeper.dtos.MemberDto;
 import com.att.team.keeper.services.BluetoothService;
 import com.att.team.keeper.services.BluetoothService.IResponseListener;
@@ -43,8 +44,6 @@ public class WatchListUsersFragment extends Fragment implements
 	AnimateFirstDisplayListener animateFirstListener = new AnimateFirstDisplayListener();
 	DisplayImageOptions options;
 
-
-	
 	private UsersAdapter mAdapter;
 
 	private ListView mUsersList;
@@ -59,16 +58,12 @@ public class WatchListUsersFragment extends Fragment implements
 			Bundle savedInstanceState) {
 
 		options = new DisplayImageOptions.Builder()
-		.showImageOnLoading(R.drawable.ic_launcher)
-		.showImageForEmptyUri(R.drawable.ic_launcher)
-		.showImageOnFail(R.drawable.ic_launcher)
-		.cacheInMemory(true)
-		.cacheOnDisc(true)
-		.considerExifParams(true)
-		.displayer(new RoundedBitmapDisplayer(20))
-		.build();
-		
-		
+				.showImageOnLoading(R.drawable.ic_launcher)
+				.showImageForEmptyUri(R.drawable.ic_launcher)
+				.showImageOnFail(R.drawable.ic_launcher).cacheInMemory(true)
+				.cacheOnDisc(true).considerExifParams(true)
+				.displayer(new RoundedBitmapDisplayer(20)).build();
+
 		mInflater = inflater;
 		View view = inflater.inflate(R.layout.watch_users_layout, null);
 
@@ -96,11 +91,11 @@ public class WatchListUsersFragment extends Fragment implements
 			return;
 		}
 
-		if(TeamKeeperApplication.isPanicAlertOn == true) {
+		if (TeamKeeperApplication.isPanicAlertOn == true) {
 			return;
-			
+
 		}
-		
+
 		for (MemberDto memberDto : list) {
 			if (TextUtils.isEmpty(memberDto.getPanic()) == false) {
 
@@ -116,7 +111,20 @@ public class WatchListUsersFragment extends Fragment implements
 					intent.putExtra(
 							InformMemberLostExtras.NUMBER_OF_LOSTS_EXTRA, 1);
 
+					List<LastSeenByEntry> lastSeenByEntries = memberDto
+							.getLastSeenBy();
+
+					String lastSeenByString = "";
+					if (lastSeenByEntries != null) {
+						for (LastSeenByEntry lastSeenByEntry : lastSeenByEntries) {
+							lastSeenByString += lastSeenByEntry.getName() + " "
+									+ lastSeenByEntry.getLastName() + ", ";
+						}
+					}
 					
+					intent.putExtra(InformMemberLostExtras.LAST_SEEN_BY_EXTRA,
+							lastSeenByString);
+
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					getActivity().startActivity(intent);
 				} else {
@@ -130,11 +138,21 @@ public class WatchListUsersFragment extends Fragment implements
 					intent.putExtra(
 							InformMemberLostExtras.NUMBER_OF_LOSTS_EXTRA, 1);
 
+					List<LastSeenByEntry> lastSeenByEntries = memberDto
+							.getLastSeenBy();
+					String lastSeenByString = "";
+					for (LastSeenByEntry lastSeenByEntry : lastSeenByEntries) {
+						lastSeenByString += lastSeenByEntry.getName() + " "
+								+ lastSeenByEntry.getLastName() + ", ";
+					}
+					intent.putExtra(InformMemberLostExtras.LAST_SEEN_BY_EXTRA,
+							lastSeenByString);
+
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					getActivity().startActivity(intent);
 
 				}
-				
+
 				break;
 
 			}
@@ -183,16 +201,20 @@ public class WatchListUsersFragment extends Fragment implements
 			String imageUrl = member.getImageUrl();
 			if (imageUrl != null) {
 				// show The Image
-				imageLoader.displayImage(imageUrl, image, options, animateFirstListener);
+				imageLoader.displayImage(imageUrl, image, options,
+						animateFirstListener);
 
 			}
-			
-			if (member.getPanic() != null && member.getPanic().length() > 0) {				
-				firstName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
-				lastName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
-				phoneNumber.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+
+			if (member.getPanic() != null && member.getPanic().length() > 0) {
+				firstName.setTextColor(getActivity().getResources().getColor(
+						android.R.color.holo_red_light));
+				lastName.setTextColor(getActivity().getResources().getColor(
+						android.R.color.holo_red_light));
+				phoneNumber.setTextColor(getActivity().getResources().getColor(
+						android.R.color.holo_red_light));
 			}
-			
+
 			firstName.setText(member.getFirstName());
 			lastName.setText(member.getLastName());
 			phoneNumber.setText(member.getMobileNumber());
@@ -202,13 +224,15 @@ public class WatchListUsersFragment extends Fragment implements
 
 	}
 
-	
-	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+	private static class AnimateFirstDisplayListener extends
+			SimpleImageLoadingListener {
 
-		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+		static final List<String> displayedImages = Collections
+				.synchronizedList(new LinkedList<String>());
 
 		@Override
-		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+		public void onLoadingComplete(String imageUri, View view,
+				Bitmap loadedImage) {
 			if (loadedImage != null) {
 				ImageView imageView = (ImageView) view;
 				boolean firstDisplay = !displayedImages.contains(imageUri);
@@ -219,7 +243,7 @@ public class WatchListUsersFragment extends Fragment implements
 			}
 		}
 	}
-	
+
 	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 		ImageView bmImage;
 

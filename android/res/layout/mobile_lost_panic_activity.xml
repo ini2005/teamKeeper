@@ -28,6 +28,22 @@
             android:textSize="60sp"
             app:typeface="roboto_thin" />
 
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="Last Seen By:"
+            android:textSize="20sp"
+            app:typeface="roboto_thin" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/informLostMember_lastSeenBy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:textSize="20sp"
+            app:typeface="roboto_thin" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

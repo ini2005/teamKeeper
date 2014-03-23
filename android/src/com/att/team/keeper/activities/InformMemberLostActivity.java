@@ -16,12 +16,13 @@ import android.widget.TextView;
 public class InformMemberLostActivity extends Activity {
 
 	private MediaPlayer mMediaPlayer;
-	
+
 	private Vibrator mVibrator;
 
 	public interface InformMemberLostExtras {
 		static final String NAMES_EXTRA = "NAMES_EXTRA";
 		static final String NUMBER_OF_LOSTS_EXTRA = "NUMBER_OF_LOSTS";
+		static final String LAST_SEEN_BY_EXTRA = "LAST_SEEN_BY";
 	}
 
 	@Override
@@ -34,6 +35,12 @@ public class InformMemberLostActivity extends Activity {
 		int number = extras
 				.getInt(InformMemberLostExtras.NUMBER_OF_LOSTS_EXTRA);
 
+		String lastSeenBy = extras
+				.getString(InformMemberLostExtras.LAST_SEEN_BY_EXTRA);
+
+		((TextView) findViewById(R.id.informLostMember_lastSeenBy))
+				.setText(lastSeenBy);
+
 		String message = new StringBuilder()
 				.append(names)
 				.append(" ")
@@ -45,10 +52,10 @@ public class InformMemberLostActivity extends Activity {
 
 		mMediaPlayer = MediaPlayer.create(this, R.raw.alert);
 		mMediaPlayer.start();
-		
-		mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+
+		mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		if (mVibrator.hasVibrator()) {
-			long[] pattern = new long[]{0, 500, 500};
+			long[] pattern = new long[] { 0, 500, 500 };
 			mVibrator.vibrate(pattern, 0);
 		}
 
@@ -94,12 +101,12 @@ public class InformMemberLostActivity extends Activity {
 		intent.putExtras(extras);
 		return intent;
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		TeamKeeperApplication.isPanicAlertOn = false;
 		super.onDestroy();
-		
+
 		mMediaPlayer.stop();
 		if (mVibrator.hasVibrator()) {
 			mVibrator.cancel();

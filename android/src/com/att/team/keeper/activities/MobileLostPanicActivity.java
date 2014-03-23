@@ -8,14 +8,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
+import android.widget.TextView;
 
 import com.att.team.keeper.R;
 import com.att.team.keeper.TeamKeeperApplication;
+import com.att.team.keeper.activities.InformMemberLostActivity.InformMemberLostExtras;
 
 public class MobileLostPanicActivity extends Activity {
 
 	private MediaPlayer mMediaPlayer;
-	
+
 	private Vibrator mVibrator;
 
 	@Override
@@ -23,21 +25,28 @@ public class MobileLostPanicActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mobile_lost_panic_activity);
 
+		Bundle extras = getIntent().getExtras();
+		String lastSeenBy = extras
+				.getString(InformMemberLostExtras.LAST_SEEN_BY_EXTRA);
+
+		((TextView) findViewById(R.id.informLostMember_lastSeenBy))
+				.setText(lastSeenBy);
+
 		mMediaPlayer = MediaPlayer.create(this, R.raw.alert);
 		mMediaPlayer.start();
-		
-		mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+
+		mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		if (mVibrator.hasVibrator()) {
-			long[] pattern = new long[]{0, 500, 500};
+			long[] pattern = new long[] { 0, 500, 500 };
 			mVibrator.vibrate(pattern, 0);
 		}
 
 		getActionBar().hide();
-		
+
 		TeamKeeperApplication.isPanicAlertOn = true;
 
 	}
-	
+
 	public void onClick_stopAlert(View v) {
 		finish();
 
@@ -59,15 +68,15 @@ public class MobileLostPanicActivity extends Activity {
 
 	public void onClick_phone(View v) {
 		String number = "tel:" + "+972523551288";
-        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(number)); 
-        startActivity(callIntent);
+		Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(number));
+		startActivity(callIntent);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		TeamKeeperApplication.isPanicAlertOn = false;
 		super.onDestroy();
-		
+
 		mMediaPlayer.stop();
 		if (mVibrator.hasVibrator()) {
 			mVibrator.cancel();
