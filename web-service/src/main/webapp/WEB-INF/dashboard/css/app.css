@@ -797,7 +797,6 @@ body {
 	float: left;
 	width: 240px;
 	height: 325px;
-	padding-top: 75px;
 	padding-left: 20px;
 }
 /*
@@ -814,9 +813,11 @@ body {
 }*/
 #graph_Better_force_layout_selection{
 	float: left;
-	width: 800px;
-	height: 800px;
+	width: 600px;
+	height: 600px;
 	padding-top: 10px;
+	padding-left:30px;
+	border: solid 1px;
 }
 .pepole{
 	margin-top:10px; 
