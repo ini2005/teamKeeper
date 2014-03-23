@@ -236,11 +236,10 @@ var mainService = function($log, $http) {
 		var color = d3.scale.category10();
 		function colorByGroup(d) { return color(group(d)); }
 		
-		var width = 600,
+		var width = 800,
 		    height = 600;
 		
-		var svg = d3.select('#graph_Better_force_layout_selection')
-		    .append('svg')
+		var svg = d3.select('#graph_Better_force_layout_selection svg')
 		    .attr('width', width)
 		    .attr('height', height);
 		

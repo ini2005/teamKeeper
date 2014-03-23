@@ -12,7 +12,7 @@ body {
 
 .main_width {
 	/*width: 898px;*/
-}
+	}
 
 .ams_header {
 	display: inline-table;
@@ -793,12 +793,6 @@ body {
 
 /********************** End During Device Session **********************************************/
 
-#list_of_pepole{
-	float: left;
-	width: 240px;
-	height: 325px;
-	padding-left: 20px;
-}
 /*
 #graph_zoomable_pack_layout{
 	float: left;
@@ -811,12 +805,32 @@ body {
 	width: 400px;
 	height: 400px;
 }*/
-#graph_Better_force_layout_selection{
+
+#pepole{
 	float: left;
-	width: 600px;
-	height: 600px;
-	padding-top: 10px;
-	padding-left:30px;
+	width: 240px;
+	padding-left: 20px;
+}
+
+#list_of_pepole{
+	
+}
+#list_of_pepole li{
+	border: 1px solid;
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: verdana;
+	height: 50px;
+	padding-top: 4px;
+}
+#graph_container{
+	float: left;
+	width: 800px;
+	height: 750px;
+	margin-left:30px;
+}
+#graph_Better_force_layout_selection{
 	border: solid 1px;
 }
 .pepole{
@@ -830,6 +844,17 @@ body {
 }
 .background_red{
 	background-color:red;
+}
+h1{
+	color: #41adfa;
+	font-size: 25px;
+	font-style: italic;
+	font-family: Verdana;
+	font-weight: bold; 
+		
+}
+.clear{
+	clear: both;
 }
 
 
