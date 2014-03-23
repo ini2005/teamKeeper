@@ -187,11 +187,11 @@ public class WatchListUsersFragment extends Fragment implements
 
 			}
 			
-//			if (member.getPanic() == "Panic") {				
-//				firstName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
-//				lastName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
-//				phoneNumber.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
-//			}
+			if (member.getPanic() != null && member.getPanic().length() > 0) {				
+				firstName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+				lastName.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+				phoneNumber.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+			}
 			
 			firstName.setText(member.getFirstName());
 			lastName.setText(member.getLastName());
