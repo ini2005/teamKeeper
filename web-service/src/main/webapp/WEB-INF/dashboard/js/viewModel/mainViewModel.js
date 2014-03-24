@@ -66,7 +66,7 @@ var mainViewModel = function($scope, $log, $state, $stateParams, mainService) {
 					+ errorThrown);
 		}
 	});	
-    },3000);
+    },4000);
 	
 	
 	setInterval(function () {$.ajax({
@@ -83,5 +83,5 @@ var mainViewModel = function($scope, $log, $state, $stateParams, mainService) {
 					+ errorThrown);
 		}
 	});
-	},3000);
+	},10000);
 };
